@@ -528,6 +528,75 @@
       min-height: 1000px;
     }
 
+    /* Creative Typography Photo Masking Cover Styles */
+    .creative-cover-grid {
+      display: none;
+      grid-template-columns: repeat(2, 140px);
+      gap: 16px;
+      justify-content: center;
+      margin: 24px auto;
+      max-width: 340px;
+    }
+    
+    .report-page.creative-cover-active .creative-cover-grid {
+      display: grid;
+    }
+
+    .mask-digit {
+      font-family: 'Prompt', 'Kanit', sans-serif;
+      font-size: 130px;
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -2px;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s ease;
+    }
+
+    /* Cover Draggable / Deletable Widgets */
+    .cover-widget {
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    body:not(.read-mode) .cover-widget {
+      border: 1px dashed transparent;
+      padding: 4px;
+      border-radius: 6px;
+    }
+    body:not(.read-mode) .cover-widget:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    /* If cover is light theme */
+    #coverHeroSection[style*="background: rgb(255, 255, 255)"] .cover-widget:hover,
+    #coverHeroSection[style*="background: #ffffff"] .cover-widget:hover {
+      border-color: var(--brand);
+      background: rgba(15, 41, 66, 0.05);
+    }
+    .cover-widget-delete {
+      position: absolute;
+      right: -8px;
+      top: -8px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--danger);
+      color: #fff;
+      font-size: 10px;
+      border: none;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    body:not(.read-mode) .cover-widget:hover .cover-widget-delete {
+      display: flex;
+    }
+
     /* Spread View Spine Effect */
     .ebook-viewport.spread-view .report-page.visible-page {
       max-width: 740px;
@@ -1036,6 +1105,38 @@
       grid-column: span 12;
     }
 
+    .media-video-card {
+      grid-column: span 6;
+      margin: 0;
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .media-video-card.full-width {
+      grid-column: span 12;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
     .media-figure-card img {
       width: 100%;
       max-height: 340px;
@@ -1162,7 +1263,7 @@
       }
     }
   </style>
-</head>
+<style data-link-removed-style>a[data-link-removed],a[href*="zPythonSafez"]:not([onclick]){pointer-events:none!important;cursor:default!important;opacity:.6}</style></head>
 <body>
 
   <!-- Top Header & Formatting Studio Bar -->
@@ -1176,12 +1277,28 @@
         </div>
       </div>
 
-      <div class="mode-switch-group" role="group" aria-label="โหมดการใช้งาน">
-        <button type="button" class="mode-btn active" id="btnEditMode" onclick="setAppMode('edit')">
-          ✏️ โหมดแก้ไขเนื้อหา (Edit)
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <button type="button" class="tool-btn" id="btnNewProject" onclick="startNewProject()" style="background: var(--danger); border-color: var(--danger); color: #fff; gap: 6px; font-weight: 600;">
+          🆕 เริ่มโครงการใหม่ (New)
         </button>
-        <button type="button" class="mode-btn" id="btnReadMode" onclick="setAppMode('read')">
-          📖 โหมดเปิดอ่าน E-Book (Read)
+        <button type="button" class="tool-btn" id="btnCancelNewProject" onclick="resetStartProjectButton()" style="display: none; background: #475569; border-color: #475569; color: #fff; gap: 4px;">
+          ✕ ยกเลิก
+        </button>
+
+        <div class="mode-switch-group" role="group" aria-label="โหมดการใช้งาน">
+          <button type="button" class="mode-btn active" id="btnEditMode" onclick="setAppMode('edit')">
+            ✏️ โหมดแก้ไขเนื้อหา (Edit)
+          </button>
+          <button type="button" class="mode-btn" id="btnReadMode" onclick="setAppMode('read')">
+            📖 โหมดเปิดอ่าน E-Book (Read)
+          </button>
+        </div>
+
+        <button type="button" class="tool-btn primary-action" onclick="downloadEbook()" style="background: var(--success); border-color: var(--success); color: #fff; gap: 6px;">
+          📥 ดาวน์โหลด E-Book (.html)
+        </button>
+        <button type="button" class="tool-btn" onclick="shareEbook()" style="background: var(--brand-light); color: #fff; border-color: rgba(255,255,255,0.2); gap: 6px;">
+          🔗 คัดลอกลิงก์แชร์
         </button>
       </div>
     </div>
@@ -1277,6 +1394,13 @@
   <div class="studio-workspace">
     <!-- Left Sidebar: Page Navigator & Add Page -->
     <aside class="studio-sidebar">
+      <!-- Search Box Widget -->
+      <div style="margin-bottom: 14px; border-bottom: 1px solid var(--border); padding-bottom: 14px;">
+        <div class="sidebar-section-title" style="margin-bottom: 6px;">🔎 ค้นหาคำในเล่ม E-Book</div>
+        <input type="text" id="ebookSearchInput" placeholder="พิมพ์คำที่ต้องการค้นหา..." oninput="searchEbookText(this.value)" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 13px;">
+        <div id="searchResultCount" style="font-size: 11.5px; color: var(--brand); font-weight: 600; margin-top: 6px; display: none;">พบ 0 หน้า</div>
+      </div>
+
       <div>
         <div class="sidebar-section-title">
           <span>สารบัญหน้า E-Book</span>
@@ -1339,44 +1463,70 @@
           <div class="page-body">
             <div class="cover-hero" id="coverHeroSection">
               <!-- Company Logo Slot -->
-              <div class="cover-logo-wrapper" id="coverLogoWrapper" style="margin-bottom: 20px; display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-                <div id="coverLogoBox" style="width: 60px; height: 60px; border-radius: 12px; background: rgba(255,255,255,0.15); border: 2px dashed rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; transition: all 0.2s ease;" onclick="document.getElementById('coverLogoInput').click()" title="คลิกเพื่ออัปโหลดโลโก้บริษัท">
-                  <span id="coverLogoPlaceholder" style="font-size: 24px; color: rgba(255,255,255,0.85);">🏢</span>
-                </div>
-                <div style="text-align: left; display: flex; flex-direction: column; gap: 4px;" class="img-control-bar">
-                  <div style="display: flex; gap: 6px; align-items: center;">
-                    <button type="button" class="tool-btn" style="padding: 4px 10px; font-size: 11.5px; background: rgba(255,255,255,0.18); color: #fff; border: 1px solid rgba(255,255,255,0.3);" onclick="document.getElementById('coverLogoInput').click()">📷 อัปโหลดโลโก้บริษัท</button>
+              <div class="cover-widget" id="widgetLogo">
+                <button type="button" class="cover-widget-delete" onclick="this.closest('.cover-widget').style.display='none'" title="ลบโลโก้จากหน้าปก">✕</button>
+                <div class="cover-logo-wrapper" id="coverLogoWrapper" style="margin-bottom: 20px; display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                  <div id="coverLogoBox" style="width: 60px; height: 60px; border-radius: 12px; background: rgba(255,255,255,0.15); border: 2px dashed rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; transition: all 0.2s ease;" onclick="document.getElementById('coverLogoInput').click()" title="คลิกเพื่ออัปโหลดโลโก้บริษัท">
+                    <span id="coverLogoPlaceholder" style="font-size: 24px; color: rgba(255,255,255,0.85);">🏢</span>
                   </div>
-                  <!-- Logo Tuning Controls -->
-                  <div style="display: flex; gap: 4px; align-items: center; margin-top: 2px; flex-wrap: wrap;">
-                    <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500;">ขนาด:</span>
-                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="adjustCoverLogoSize('45px')">S</button>
-                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="adjustCoverLogoSize('60px')">M</button>
-                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="adjustCoverLogoSize('80px')">L</button>
-                    <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500; margin-left: 4px;">ทรง:</span>
-                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShape('6px')">🔲</button>
-                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShape('50%')">⚪</button>
-                    
-                    <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500; margin-left: 4px;">เงา:</span>
-                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShadow('none')">✕</button>
-                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShadow('0 4px 10px rgba(0,0,0,0.3)')">☁️ นุ่ม</button>
-                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShadow('0 0 15px rgba(255,255,255,0.8)')">✨ เรืองแสง</button>
+                  <div style="text-align: left; display: flex; flex-direction: column; gap: 4px;" class="img-control-bar">
+                    <div style="display: flex; gap: 6px; align-items: center;">
+                      <button type="button" class="tool-btn" style="padding: 4px 10px; font-size: 11.5px; background: rgba(255,255,255,0.18); color: #fff; border: 1px solid rgba(255,255,255,0.3);" onclick="document.getElementById('coverLogoInput').click()">📷 อัปโหลดโลโก้บริษัท</button>
+                    </div>
+                    <!-- Logo Tuning Controls -->
+                    <div style="display: flex; gap: 4px; align-items: center; margin-top: 2px; flex-wrap: wrap;">
+                      <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500;">ขนาด:</span>
+                      <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="adjustCoverLogoSize('45px')">S</button>
+                      <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="adjustCoverLogoSize('60px')">M</button>
+                      <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="adjustCoverLogoSize('80px')">L</button>
+                      <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500; margin-left: 4px;">ทรง:</span>
+                      <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShape('6px')">🔲</button>
+                      <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShape('50%')">⚪</button>
+                      
+                      <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500; margin-left: 4px;">เงา:</span>
+                      <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShadow('none')">✕</button>
+                      <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShadow('0 4px 10px rgba(0,0,0,0.3)')">☁️ นุ่ม</button>
+                      <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShadow('0 0 15px rgba(255,255,255,0.8)')">✨ เรืองแสง</button>
 
-                    <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500; margin-left: 4px;">ขอบ:</span>
-                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoBorder('none')">✕</button>
-                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoBorder('2px solid #ffffff')">⚪ ขาว</button>
-                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoBorder('2px solid var(--accent)')">🌟 ทอง</button>
+                      <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500; margin-left: 4px;">ขอบ:</span>
+                      <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoBorder('none')">✕</button>
+                      <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoBorder('2px solid #ffffff')">⚪ ขาว</button>
+                      <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoBorder('2px solid var(--accent)')">🌟 ทอง</button>
+                    </div>
                   </div>
+                  <input type="file" id="coverLogoInput" accept="image/*" style="display:none" onchange="handleCoverLogoFile(this.files)">
                 </div>
-                <input type="file" id="coverLogoInput" accept="image/*" style="display:none" onchange="handleCoverLogoFile(this.files)">
               </div>
 
-              <div class="cover-badge" contenteditable="true">ANNUAL BUILDING REPORT & DIRECTORY</div>
-              <h2 class="cover-title" contenteditable="true">LUMPINI TOWER (อาคารลุมพินีทาวเวอร์)</h2>
-              <p class="cover-subtitle" contenteditable="true">รายงานประจำปีและคู่มือมาตรฐานการบริหารจัดการอาคารชุดสำนักงาน</p>
-              <div class="cover-address-bar" contenteditable="true">
-                <strong>ที่ตั้งโครงการ:</strong> 1168 อาคารลุมพินี ทาวเวอร์ ถนนพระราม 4 แขวงทุ่งมหาเมฆ เขตสาทร กรุงเทพมหานคร 10120<br>
-                <strong>โทรศัพท์:</strong> 02-6776356-7 &nbsp;|&nbsp; <strong>โทรสาร (Fax):</strong> 02-286-9856
+              <!-- Typography 2026 Masking Grid (Visible in creative-photo-masking template) -->
+              <div class="creative-cover-grid" id="creativeCoverMask">
+                <div class="mask-digit" contenteditable="true" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=300&q=80');">2</div>
+                <div class="mask-digit" contenteditable="true" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=300&q=80');">0</div>
+                <div class="mask-digit" contenteditable="true" style="background-image: url('https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=300&q=80');">2</div>
+                <div class="mask-digit" contenteditable="true" style="background-image: url('https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=300&q=80');">6</div>
+              </div>
+
+              <div class="cover-widget" id="widgetBadge">
+                <button type="button" class="cover-widget-delete" onclick="this.closest('.cover-widget').style.display='none'" title="ลบป้ายคำบรรยาย">✕</button>
+                <div class="cover-badge" contenteditable="true">ANNUAL BUILDING REPORT & DIRECTORY</div>
+              </div>
+
+              <div class="cover-widget" id="widgetTitle">
+                <button type="button" class="cover-widget-delete" onclick="this.closest('.cover-widget').style.display='none'" title="ลบหัวข้อเรื่องหลัก">✕</button>
+                <h2 class="cover-title" contenteditable="true">LUMPINI TOWER (อาคารลุมพินีทาวเวอร์)</h2>
+              </div>
+
+              <div class="cover-widget" id="widgetSubtitle">
+                <button type="button" class="cover-widget-delete" onclick="this.closest('.cover-widget').style.display='none'" title="ลบหัวข้อย่อย">✕</button>
+                <p class="cover-subtitle" contenteditable="true">รายงานประจำปีและคู่มือมาตรฐานการบริหารจัดการอาคารชุดสำนักงาน</p>
+              </div>
+
+              <div class="cover-widget" id="widgetAddress">
+                <button type="button" class="cover-widget-delete" onclick="this.closest('.cover-widget').style.display='none'" title="ลบที่ตั้งและเบอร์ติดต่อ">✕</button>
+                <div class="cover-address-bar" contenteditable="true">
+                  <strong>ที่ตั้งโครงการ:</strong> 1168 อาคารลุมพินี ทาวเวอร์ ถนนพระราม 4 แขวงทุ่งมหาเมฆ เขตสาทร กรุงเทพมหานคร 10120<br>
+                  <strong>โทรศัพท์:</strong> 02-6776356-7 &nbsp;|&nbsp; <strong>โทรสาร (Fax):</strong> 02-286-9856
+                </div>
               </div>
               
               <!-- Cover Image Customization Controls -->
@@ -1393,9 +1543,10 @@
                 
                 <span style="font-size: 12px; color: rgba(255,255,255,0.85); font-weight: 600; margin-left: 8px;">🎨 ดีไซน์หน้าปก:</span>
                 <select class="tool-select" style="background: rgba(255,255,255,0.18); color: #fff; border: 1px solid rgba(255,255,255,0.3); font-size: 12px;" onchange="applyCoverTemplate(this.value)" aria-label="เลือกดีไซน์หน้าปก">
-                  <option value="navy">🏢 Lumpini Corporate (กรมท่า-ทอง)</option>
+                  <option value="navy" selected>🏢 Lumpini Corporate (กรมท่า-ทอง)</option>
                   <option value="light">🏳️ Modern Minimalist (ขาวคลีน-โมเดิร์น)</option>
                   <option value="dark">🌑 Executive Charcoal (เทาถ่าน-สปอร์ต)</option>
+                  <option value="creative">🎨 Typography Masking 2026 (รูปภาพในตัวเลข)</option>
                 </select>
 
                 <input type="file" id="coverImageInput" accept="image/*" style="display:none" onchange="handleCoverImageFile(this.files)">
@@ -1500,9 +1651,17 @@
 
           <div class="page-editor-controls">
             <span style="font-size:12px; color:var(--muted);">เครื่องมือประจำหน้า:</span>
-            <div style="display:flex; gap:6px;">
+            <div style="display:flex; gap:6px; flex-wrap: wrap;">
               <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
               <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+              <button type="button" class="tool-btn" onclick="appendYoutubePlaceholder(this)">+ แทรกวิดีโอ YouTube</button>
+              
+              <span style="font-size: 11px; color: var(--muted); align-self: center; margin-left: 8px;">🔄 กู้คืนส่วนที่ลบ:</span>
+              <button type="button" class="tool-btn" style="padding: 3px 6px; font-size: 10.5px;" onclick="document.getElementById('widgetLogo').style.display='block'">🏢 โลโก้</button>
+              <button type="button" class="tool-btn" style="padding: 3px 6px; font-size: 10.5px;" onclick="document.getElementById('widgetBadge').style.display='block'">🏷️ ป้ายปก</button>
+              <button type="button" class="tool-btn" style="padding: 3px 6px; font-size: 10.5px;" onclick="document.getElementById('widgetTitle').style.display='block'">✍️ หัวเรื่อง</button>
+              <button type="button" class="tool-btn" style="padding: 3px 6px; font-size: 10.5px;" onclick="document.getElementById('widgetSubtitle').style.display='block'">💬 คำอธิบาย</button>
+              <button type="button" class="tool-btn" style="padding: 3px 6px; font-size: 10.5px;" onclick="document.getElementById('widgetAddress').style.display='block'">📍 ที่ตั้ง</button>
             </div>
           </div>
 
@@ -1560,6 +1719,7 @@
               <button type="button" class="tool-btn" onclick="renderTableOfContents()">🔄 อัปเดตสารบัญ</button>
               <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
               <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+              <button type="button" class="tool-btn" onclick="appendYoutubePlaceholder(this)">+ แทรกวิดีโอ YouTube</button>
             </div>
           </div>
 
@@ -1631,7 +1791,7 @@
               <table class="report-table">
                 <thead>
                   <tr>
-                    <th>ชื่อ - นามสกุล / หน่วยงาน</th>
+                    <th>ชื่อ - นามสกุล / นิติบุคคล</th>
                     <th>ตำแหน่งและความรับผิดชอบ</th>
                     <th>หมายเลขโทรศัพท์ติดต่อ</th>
                   </tr>
@@ -1687,6 +1847,7 @@
               <button type="button" class="tool-btn" onclick="document.getElementById('execPortraitInput').click()">📷 อัปโหลดรูปผู้บริหาร</button>
               <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
               <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+              <button type="button" class="tool-btn" onclick="appendYoutubePlaceholder(this)">+ แทรกวิดีโอ YouTube</button>
             </div>
           </div>
 
@@ -1813,6 +1974,7 @@
             <div style="display:flex; gap:6px;">
               <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
               <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+              <button type="button" class="tool-btn" onclick="appendYoutubePlaceholder(this)">+ แทรกวิดีโอ YouTube</button>
             </div>
           </div>
 
@@ -1908,6 +2070,7 @@
             <div style="display:flex; gap:6px;">
               <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
               <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+              <button type="button" class="tool-btn" onclick="appendYoutubePlaceholder(this)">+ แทรกวิดีโอ YouTube</button>
             </div>
           </div>
 
@@ -2054,6 +2217,7 @@
             <div style="display:flex; gap:6px;">
               <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
               <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+              <button type="button" class="tool-btn" onclick="appendYoutubePlaceholder(this)">+ แทรกวิดีโอ YouTube</button>
             </div>
           </div>
 
@@ -2252,7 +2416,8 @@
             <span style="font-size:12px; color:var(--muted);">เครื่องมือประจำหน้า:</span>
             <div style="display:flex; gap:6px;">
               <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
-              <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพเครื่องจักร / แผนผังชั้น</button>
+              <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+              <button type="button" class="tool-btn" onclick="appendYoutubePlaceholder(this)">+ แทรกวิดีโอ YouTube</button>
             </div>
           </div>
 
@@ -2690,6 +2855,7 @@
           <div style="display:flex; gap:6px;">
             <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
             <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+            <button type="button" class="tool-btn" onclick="appendYoutubePlaceholder(this)">+ แทรกวิดีโอ YouTube</button>
           </div>
         </div>
         <div class="page-running-footer">
@@ -2719,6 +2885,86 @@
 
       body.insertBefore(panel, mediaGrid);
       panel.focus();
+    }
+
+    function appendYoutubePlaceholder(btnEl) {
+      const page = btnEl.closest('.report-page');
+      if (!page) return;
+      const mediaGrid = page.querySelector('.page-media-grid');
+
+      const div = document.createElement('div');
+      div.className = 'media-video-card full-width';
+      div.style.padding = '16px';
+      div.style.background = 'var(--brand-soft)';
+      div.style.border = '1px dashed var(--brand)';
+      div.style.display = 'flex';
+      div.style.flexDirection = 'column';
+      div.style.gap = '8px';
+
+      div.innerHTML = `
+        <span style="font-weight: 600; color: var(--brand); font-size: 13.5px;">📹 แทรกวิดีโอจาก YouTube</span>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <input type="text" placeholder="วางลิงก์ YouTube ที่นี่ (เช่น about:invalid#zPythonSafez)" style="flex: 1; min-width: 250px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; font-size: 13px;" class="yt-url-input">
+          <button type="button" class="tool-btn primary-action" onclick="confirmYoutubeEmbed(this)" style="padding: 8px 16px; font-size: 12.5px;">ตกลง</button>
+          <button type="button" class="tool-btn" onclick="this.closest('.media-video-card').remove()" style="padding: 8px 12px; font-size: 12.5px;">ยกเลิก</button>
+        </div>
+        <span class="yt-error" style="color: var(--danger); font-size: 11px; display: none;">❌ ลิงก์ YouTube ไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง</span>
+      `;
+      mediaGrid.appendChild(div);
+    }
+
+    function confirmYoutubeEmbed(btn) {
+      const card = btn.closest('.media-video-card');
+      const input = card.querySelector('.yt-url-input');
+      const errorMsg = card.querySelector('.yt-error');
+      const url = input.value.trim();
+
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+      const match = url.match(regExp);
+      const ytId = (match && match[2].length === 11) ? match[2] : null;
+
+      if (!ytId) {
+        if (errorMsg) errorMsg.style.display = 'block';
+        return;
+      }
+
+      card.style.padding = '0';
+      card.style.background = 'transparent';
+      card.style.border = 'none';
+      card.style.display = 'flex';
+      card.style.flexDirection = 'column';
+      card.style.gap = '0';
+
+      card.innerHTML = `
+        <div class="video-container">
+          <iframe id="yt-iframe-${ytId}" src="about:invalid#zPythonSafez" allowfullscreen></iframe>
+        </div>
+        <figcaption class="media-caption-bar">
+          <span contenteditable="true" style="flex:1;">คำบรรยายวิดีโอ: วิดีโอแนะนำอาคาร (คลิกเพื่อแก้ไข)</span>
+          <div class="img-control-bar">
+            <button type="button" class="mini-icon-btn" style="width: auto; padding: 2px 6px; font-size: 11px;" title="สลับเปิด/ปิดการเล่นอัตโนมัติ (จะปิดเสียงเริ่มต้นตามกฎของบราวเซอร์)" onclick="toggleVideoAutoplay(this, '${ytId}')">▶️ เล่นออโต้: ปิด</button>
+            <button type="button" class="mini-icon-btn" title="สลับขนาด ครึ่งหน้า / เต็มหน้า" onclick="toggleImageWidth(this)">⇔</button>
+            <button type="button" class="mini-icon-btn" title="ลบวิดีโอนี้" onclick="this.closest('.media-video-card').remove()">✕</button>
+          </div>
+        </figcaption>
+      `;
+    }
+
+    function toggleVideoAutoplay(btn, ytId) {
+      const iframe = document.getElementById(`yt-iframe-${ytId}`);
+      if (!iframe) return;
+      
+      const isCurrentlyOn = btn.textContent.includes("เปิด");
+      if (isCurrentlyOn) {
+        iframe.src = `about:invalid#zPythonSafez`;
+        btn.textContent = "▶️ เล่นออโต้: ปิด";
+        btn.style.background = "rgba(0, 0, 0, 0.06)";
+      } else {
+        iframe.src = `about:invalid#zPythonSafez`;
+        btn.textContent = "▶️ เล่นออโต้: เปิด";
+        btn.style.background = "var(--accent)";
+        btn.style.color = "#0f172a";
+      }
     }
 
     function triggerImageUpload() {
@@ -2782,6 +3028,7 @@
       }
     }
 
+    // Cover page background image uploader
     function handleCoverImageFile(files) {
       if (!files || !files.length) return;
       const file = files[0];
@@ -2796,6 +3043,7 @@
       document.getElementById('coverImageInput').value = '';
     }
 
+    // Cover page logo uploader
     function handleCoverLogoFile(files) {
       if (!files || !files.length) return;
       const file = files[0];
@@ -2870,12 +3118,32 @@
       const cover = document.getElementById('coverHeroSection');
       if (!cover) return;
 
+      const page = cover.closest('.report-page');
       const badge = cover.querySelector('.cover-badge');
       const title = cover.querySelector('.cover-title');
       const subtitle = cover.querySelector('.cover-subtitle');
       const addr = cover.querySelector('.cover-address-bar');
 
-      if (themeKey === 'light') {
+      // Reset creative mode state on cover page element
+      if (page) page.classList.remove('creative-cover-active');
+
+      if (themeKey === 'creative') {
+        if (page) page.classList.add('creative-cover-active');
+        cover.style.background = '#0f1d3a';
+        cover.style.border = 'none';
+        cover.style.borderBottom = '5px solid var(--accent)';
+        cover.style.color = '#ffffff';
+        if (badge) {
+          badge.style.background = 'var(--accent)';
+          badge.style.color = '#0f172a';
+        }
+        if (subtitle) subtitle.style.color = '#cbd5e1';
+        if (addr) {
+          addr.style.background = 'rgba(15, 23, 42, 0.5)';
+          addr.style.borderLeft = '3px solid var(--accent)';
+          addr.style.color = '#f8fafc';
+        }
+      } else if (themeKey === 'light') {
         cover.style.background = '#ffffff';
         cover.style.border = '1px solid var(--border)';
         cover.style.borderBottom = '5px solid var(--brand)';
@@ -2925,7 +3193,7 @@
     }
 
     function toggleImageWidth(btn) {
-      const card = btn.closest('.media-figure-card');
+      const card = btn.closest('.media-figure-card') || btn.closest('.media-video-card');
       if (card) {
         card.classList.toggle('full-width');
       }
@@ -3050,6 +3318,170 @@
             updatePageNumbersAndSidebar();
           }
         });
+      });
+    }
+
+    function searchEbookText(query) {
+      const q = query.trim().toLowerCase();
+      const countEl = document.getElementById('searchResultCount');
+      const sidebarList = document.getElementById('sidebarPageList');
+      if (!q) {
+        countEl.style.display = 'none';
+        Array.from(sidebarList.children).forEach(item => {
+          item.style.opacity = '1';
+          item.style.borderColor = '';
+        });
+        return;
+      }
+
+      let matches = 0;
+      const pages = getPages();
+      pages.forEach((page, idx) => {
+        const text = page.textContent.toLowerCase();
+        const navItem = sidebarList.children[idx];
+        if (text.includes(q)) {
+          matches++;
+          if (navItem) {
+            navItem.style.opacity = '1';
+            navItem.style.borderColor = 'var(--accent)';
+          }
+        } else {
+          if (navItem) {
+            navItem.style.opacity = '0.35';
+            navItem.style.borderColor = 'var(--border)';
+          }
+        }
+      });
+
+      countEl.textContent = `พบ ${matches} หน้าที่เกี่ยวข้อง`;
+      countEl.style.display = 'block';
+    }
+
+    let startProjectConfirmState = false;
+    let startProjectTimeout = null;
+
+    function startNewProject() {
+      const btn = document.getElementById('btnNewProject');
+      const cancelBtn = document.getElementById('btnCancelNewProject');
+      if (!btn) return;
+
+      if (!startProjectConfirmState) {
+        startProjectConfirmState = true;
+        btn.innerHTML = '⚠️ ยืนยันล้างข้อมูลใหม่?';
+        btn.style.background = 'var(--danger)';
+        btn.style.borderColor = 'var(--danger)';
+        if (cancelBtn) cancelBtn.style.display = 'inline-flex';
+        
+        startProjectTimeout = setTimeout(() => {
+          resetStartProjectButton();
+        }, 5000);
+      } else {
+        executeProjectReset();
+        resetStartProjectButton();
+      }
+    }
+
+    function resetStartProjectButton() {
+      const btn = document.getElementById('btnNewProject');
+      const cancelBtn = document.getElementById('btnCancelNewProject');
+      if (btn) {
+        btn.innerHTML = '🆕 เริ่มโครงการใหม่ (New)';
+        btn.style.background = 'var(--danger)';
+        btn.style.borderColor = 'var(--danger)';
+      }
+      if (cancelBtn) cancelBtn.style.display = 'none';
+      startProjectConfirmState = false;
+      if (startProjectTimeout) clearTimeout(startProjectTimeout);
+    }
+
+    function executeProjectReset() {
+      // 1. Reset Cover Hero Section (Page 1)
+      const cover = document.getElementById('coverHeroSection');
+      if (cover) {
+        cover.style.backgroundImage = 'none';
+        cover.querySelector('.cover-badge').textContent = 'ระบุป้ายรายงานใหม่';
+        cover.querySelector('.cover-title').textContent = 'ระบุชื่อเล่มรายงานใหม่';
+        cover.querySelector('.cover-subtitle').textContent = 'คำโปรยรายงานสั้นยืดหยุ่นปรับแก้ได้ตามที่ต้องการ';
+        cover.querySelector('.cover-address-bar').innerHTML = '<strong>ที่ตั้งโครงการ:</strong> ระบุที่ตั้งโครงการ และข้อมูลติดต่อประสานงานที่นี่';
+        
+        // Reset logo box to default placeholder
+        const logoBox = document.getElementById('coverLogoBox');
+        if (logoBox) {
+          logoBox.innerHTML = '<span id="coverLogoPlaceholder" style="font-size: 24px; color: rgba(255,255,255,0.85);">🏢</span>';
+          logoBox.style.border = '2px dashed rgba(255,255,255,0.4)';
+          logoBox.style.background = 'rgba(255,255,255,0.15)';
+        }
+      }
+
+      // 2. Remove pages from index 3 (Page 4) onwards
+      const pages = getPages();
+      for (let i = 3; i < pages.length; i++) {
+        pages[i].remove();
+      }
+
+      // 3. Reset Executive Message (Page 3) to blank template
+      const execPage = pages[2];
+      if (execPage) {
+        execPage.querySelector('.exec-quote-banner').textContent = '“คลิกที่นี่เพื่อพิมพ์วิสัยทัศน์หรือคำขวัญขององค์กร”';
+        const execBody = execPage.querySelector('.exec-hero-card div[contenteditable]');
+        if (execBody) {
+          execBody.innerHTML = `
+            <p style="margin-top:0;">เรียน ท่านคณะกรรมการ และผู้เกี่ยวข้องทุกท่าน,</p>
+            <p>พิมพ์ย่อยสารจากผู้บริหารหรือคำแถลงผลงานของโปรเจกต์ใหม่ลงตรงนี้ได้ตามประสงค์...</p>
+          `;
+        }
+        const avatarBox = document.getElementById('execAvatarBox');
+        if (avatarBox) {
+          avatarBox.innerHTML = `
+            <div style="padding:12px; text-align:center;">
+              <div style="font-size:32px; margin-bottom:6px;">🏢</div>
+              <div style="font-weight:700; font-size:13px;">NEW PROJECT</div>
+            </div>
+          `;
+        }
+      }
+
+      // 4. Update and navigate back to Cover Page
+      currentPageIndex = 0;
+      updatePageNumbersAndSidebar();
+    }
+
+    function downloadEbook() {
+      // Serialize current HTML document state
+      const htmlContent = '<!doctype html>\n' + document.documentElement.outerHTML;
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Lumpini_Tower_EBook_Annual_Report.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function shareEbook() {
+      const shareUrl = window.location.href;
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        const btn = document.querySelector('button[onclick="shareEbook()"]');
+        if (btn) {
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '✅ คัดลอกลิงก์สำเร็จ!';
+          btn.style.background = 'var(--success)';
+          btn.style.borderColor = 'var(--success)';
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.background = 'var(--brand-light)';
+            btn.style.borderColor = 'rgba(255,255,255,0.2)';
+          }, 2000);
+        }
+      }).catch(err => {
+        const dummyInput = document.createElement('input');
+        dummyInput.value = shareUrl;
+        document.body.appendChild(dummyInput);
+        dummyInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummyInput);
       });
     }
 
