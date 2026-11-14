@@ -1,0 +1,3062 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LUMPINI TOWER — รายงานประจำปีและคู่มือมาตรฐานอาคารชุดสำนักงาน (E-Book Studio)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #0f2942;
+      --brand-light: #1e4976;
+      --brand-soft: #eef4fa;
+      --accent: #c59b27;
+      --accent-soft: #fdf8eb;
+      --bg-workspace: #e9eef5;
+      --surface: #ffffff;
+      --surface-muted: #f8fafc;
+      --ink: #1e293b;
+      --muted: #64748b;
+      --border: #dbe3ee;
+      --danger: #dc2626;
+      --success: #15803d;
+
+      --report-font: 'Sarabun', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --heading-font: 'Prompt', 'Sarabun', sans-serif;
+      --base-font-size: 15px;
+      --page-padding: 40px;
+      --page-max-width: 840px;
+      --page-min-height: 1060px;
+      --content-columns: 1;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --shadow-page: 0 12px 32px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.06);
+      --shadow-ui: 0 1px 3px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Prompt', 'Sarabun', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-workspace);
+      color: var(--ink);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Studio Top Header & Toolbar */
+    .studio-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0f172a;
+      color: #f8fafc;
+      border-bottom: 1px solid #1e293b;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    }
+
+    .studio-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .brand-identity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-emblem {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+      letter-spacing: 0.5px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+      flex-shrink: 0;
+    }
+
+    .brand-title-wrap h1 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: #ffffff;
+    }
+
+    .brand-title-wrap p {
+      margin: 0;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .mode-switch-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #1e293b;
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+
+    .mode-btn {
+      font: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: #cbd5e1;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .mode-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .mode-btn.active {
+      background: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* Secondary Formatting & Layout Bar */
+    .studio-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 20px;
+      background: #ffffff;
+      color: var(--ink);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+
+    .tool-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding-right: 10px;
+      border-right: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .tool-group:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .tool-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.4px;
+      margin-right: 2px;
+    }
+
+    .tool-btn, .tool-select {
+      font: inherit;
+      font-size: 12.5px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--ink);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+
+    .tool-btn:hover, .tool-select:hover {
+      border-color: var(--brand);
+      background: var(--surface-muted);
+    }
+
+    .tool-btn:focus-visible, .tool-select:focus-visible, .mode-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .tool-btn.primary-action {
+      background: var(--brand);
+      color: #ffffff;
+      border-color: var(--brand);
+      font-weight: 500;
+    }
+
+    .tool-btn.primary-action:hover {
+      background: var(--brand-light);
+    }
+
+    .tool-btn.accent-action {
+      background: var(--accent-soft);
+      color: #7c5e10;
+      border-color: #e6c875;
+      font-weight: 500;
+    }
+
+    .tool-btn.accent-action:hover {
+      background: #f9edc7;
+    }
+
+    .theme-swatches {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .swatch-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 0 1px #cbd5e1;
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.15s ease;
+    }
+
+    .swatch-btn:hover {
+      transform: scale(1.12);
+    }
+
+    .swatch-btn.active {
+      box-shadow: 0 0 0 2px var(--ink);
+    }
+
+    .color-picker-input {
+      width: 26px;
+      height: 26px;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    /* Main Workspace Layout */
+    .studio-workspace {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: calc(100vh - 108px);
+    }
+
+    /* Left Sidebar: TOC & Page Manager */
+    .studio-sidebar {
+      background: #ffffff;
+      border-right: 1px solid var(--border);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      height: calc(100vh - 108px);
+      position: sticky;
+      top: 108px;
+      overflow-y: auto;
+    }
+
+    .sidebar-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      margin: 0 0 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .page-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .page-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: left;
+    }
+
+    .page-nav-item:hover {
+      border-color: var(--brand);
+      background: var(--brand-soft);
+    }
+
+    .page-nav-item.active {
+      background: var(--brand);
+      color: #ffffff;
+      border-color: var(--brand);
+    }
+
+    .page-nav-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .page-num-badge {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(15, 41, 66, 0.1);
+      color: var(--brand);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .page-nav-item.active .page-num-badge {
+      background: var(--accent);
+      color: #0f172a;
+    }
+
+    .page-nav-title {
+      font-size: 12.5px;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .page-item-actions {
+      display: inline-flex;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+
+    .mini-icon-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      border: none;
+      background: rgba(0, 0, 0, 0.06);
+      color: inherit;
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .page-nav-item.active .mini-icon-btn {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+    }
+
+    .mini-icon-btn:hover {
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .add-page-box {
+      background: var(--surface-muted);
+      border: 1px dashed #94a3b8;
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* E-Book Stage & Reader Controls */
+    .ebook-stage-container {
+      padding: 24px 28px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      overflow-x: auto;
+    }
+
+    .ebook-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      max-width: var(--page-max-width);
+      background: #ffffff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-ui);
+      border: 1px solid var(--border);
+    }
+
+    .ebook-spread-mode .ebook-nav-bar {
+      max-width: 1520px;
+    }
+
+    .page-indicator-pill {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .edit-hint-banner {
+      width: 100%;
+      max-width: var(--page-max-width);
+      background: var(--brand-soft);
+      border: 1px solid #bfd6ed;
+      color: var(--brand);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .read-mode .edit-hint-banner,
+    .read-mode .page-editor-controls,
+    .read-mode .img-control-bar,
+    .read-mode .portrait-upload-btn {
+      display: none !important;
+    }
+
+    /* Book Viewport & Page Cards */
+    .ebook-viewport {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .ebook-viewport.spread-view {
+      flex-direction: row;
+      justify-content: center;
+      align-items: stretch;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .report-page {
+      width: 100%;
+      max-width: var(--page-max-width);
+      min-height: var(--page-min-height);
+      background: var(--surface);
+      border-radius: 6px;
+      box-shadow: var(--shadow-page);
+      border: 1px solid var(--border);
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      font-family: var(--report-font);
+      font-size: var(--base-font-size);
+      color: var(--ink);
+      transition: all 0.2s ease;
+    }
+
+    .report-page.visible-page {
+      display: flex;
+    }
+
+    /* Full-Page Cover Layout Styles */
+    .report-page.full-cover-layout .page-running-header,
+    .report-page.full-cover-layout .page-running-footer,
+    .report-page.full-cover-layout .kpi-grid,
+    .report-page.full-cover-layout .two-col-cards,
+    .report-page.full-cover-layout h3,
+    .report-page.full-cover-layout .table-wrapper {
+      display: none !important;
+    }
+    .report-page.full-cover-layout .page-body {
+      padding: 0 !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: stretch;
+    }
+    .report-page.full-cover-layout .cover-hero {
+      margin-bottom: 0;
+      border-radius: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px;
+      min-height: 1000px;
+    }
+
+    /* Spread View Spine Effect */
+    .ebook-viewport.spread-view .report-page.visible-page {
+      max-width: 740px;
+      border-radius: 4px;
+    }
+
+    .ebook-viewport.spread-view .report-page.spread-left {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: 2px solid #cbd5e1;
+      background: linear-gradient(to right, #ffffff 96%, #f1f5f9 100%);
+    }
+
+    .ebook-viewport.spread-view .report-page.spread-right {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      background: linear-gradient(to left, #ffffff 96%, #f1f5f9 100%);
+    }
+
+    /* Page Ribbon Header */
+    .page-running-header {
+      padding: 18px var(--page-padding) 14px;
+      border-bottom: 2px solid var(--brand);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: linear-gradient(to right, var(--brand-soft), #ffffff);
+    }
+
+    .running-brand {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--brand);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .running-brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .running-section {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Page Body Area */
+    .page-body {
+      padding: 28px var(--page-padding) 32px;
+      flex: 1;
+      column-count: var(--content-columns);
+      column-gap: 28px;
+    }
+
+    .page-body > * {
+      break-inside: avoid-column;
+      margin-bottom: 20px;
+    }
+
+    /* Cover Banner on Page 1 */
+    .cover-hero {
+      column-span: all;
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+      background-size: cover;
+      background-position: center;
+      color: #ffffff;
+      padding: 44px 36px 36px;
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      border-bottom: 5px solid var(--accent);
+      transition: background 0.3s ease;
+    }
+
+    .cover-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.85) 40%, rgba(15, 23, 42, 0.4) 100%);
+      z-index: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .cover-hero > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cover-hero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(197, 155, 39, 0.28) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #0f172a;
+      font-family: var(--heading-font);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .cover-title {
+      font-family: var(--heading-font);
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .cover-subtitle {
+      font-size: 17px;
+      font-weight: 500;
+      color: #e2e8f0;
+      margin: 0 0 18px 0;
+    }
+
+    .cover-address-bar {
+      background: rgba(15, 23, 42, 0.35);
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      color: #f8fafc;
+    }
+
+    /* Section Headings */
+    .section-header {
+      column-span: all;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .section-kicker {
+      font-family: var(--heading-font);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 3px;
+    }
+
+    .section-title {
+      font-family: var(--heading-font);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--brand);
+      margin: 0;
+    }
+
+    .sub-heading {
+      font-family: var(--heading-font);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--brand);
+      margin: 0 0 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sub-heading::before {
+      content: "";
+      width: 5px;
+      height: 18px;
+      border-radius: 3px;
+      background: var(--accent);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* Key Metrics Grid */
+    .kpi-grid {
+      column-span: all;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .kpi-card {
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--brand);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .kpi-card.highlight {
+      border-top-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .kpi-value {
+      font-family: var(--heading-font);
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--brand);
+      line-height: 1.2;
+    }
+
+    .kpi-unit {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Info Panels & Cards */
+    .info-panel {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+
+    .info-panel.tinted {
+      background: var(--brand-soft);
+      border-color: #c7d9ec;
+    }
+
+    .info-panel.warning-box {
+      background: #fffbeb;
+      border-color: #fde68a;
+      border-left: 4px solid var(--accent);
+    }
+
+    .two-col-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    /* Table of Contents Interactive Page Styling */
+    .toc-grid {
+      column-span: all;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .toc-entry-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: #ffffff;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .toc-entry-card:hover {
+      border-color: var(--brand);
+      background: var(--brand-soft);
+      transform: translateX(4px);
+    }
+
+    .toc-entry-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .toc-chapter-num {
+      font-family: var(--heading-font);
+      font-size: 16px;
+      font-weight: 700;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--brand);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .toc-chapter-text h4 {
+      margin: 0 0 3px 0;
+      font-family: var(--heading-font);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--brand);
+    }
+
+    .toc-chapter-text p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .toc-page-pill {
+      font-family: var(--heading-font);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand);
+      background: var(--accent-soft);
+      border: 1px solid #e6c875;
+      padding: 5px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Executive Message Layout */
+    .exec-hero-card {
+      column-span: all;
+      display: flex;
+      gap: 24px;
+      background: linear-gradient(135deg, var(--brand-soft) 0%, #ffffff 100%);
+      border: 1px solid #c7d9ec;
+      border-left: 5px solid var(--brand);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      margin-bottom: 22px;
+      align-items: start;
+    }
+
+    .exec-portrait-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      text-align: center;
+      box-shadow: var(--shadow-ui);
+      flex-shrink: 0;
+    }
+
+    .exec-avatar-preview {
+      width: 100%;
+      aspect-ratio: 4 / 4.5;
+      border-radius: 8px;
+      background: linear-gradient(145deg, var(--brand) 0%, var(--brand-light) 100%);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .exec-avatar-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .exec-quote-banner {
+      font-family: var(--heading-font);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--brand);
+      line-height: 1.5;
+      margin: 0 0 14px 0;
+      padding-left: 14px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .sample-draft-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--accent-soft);
+      border: 1px solid #e6c875;
+      color: #7c5e10;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    /* Tables */
+    .table-wrapper {
+      column-span: all;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 18px;
+      background: #ffffff;
+    }
+
+    table.report-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    table.report-table th {
+      background: var(--brand);
+      color: #ffffff;
+      font-family: var(--heading-font);
+      font-weight: 600;
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 2px solid var(--accent);
+      white-space: nowrap;
+    }
+
+    table.report-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    table.report-table tr:nth-child(even) td {
+      background: var(--surface-muted);
+    }
+
+    table.report-table tr:hover td {
+      background: var(--brand-soft);
+    }
+
+    .num-col {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    /* Editable Visual Feedback */
+    [contenteditable="true"] {
+      outline: none;
+      border-radius: 4px;
+      transition: background-color 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    body:not(.read-mode) [contenteditable="true"]:hover {
+      box-shadow: 0 0 0 1px dashed rgba(37, 99, 235, 0.45);
+    }
+
+    body:not(.read-mode) [contenteditable="true"]:focus {
+      background-color: rgba(254, 249, 195, 0.45);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .cover-hero [contenteditable="true"]:focus {
+      background-color: rgba(255, 255, 255, 0.14);
+    }
+
+    /* Inserted Image Gallery inside Pages */
+    .page-media-grid {
+      column-span: all;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .media-figure-card {
+      grid-column: span 6;
+      margin: 0;
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .media-figure-card.full-width {
+      grid-column: span 12;
+    }
+
+    .media-figure-card img {
+      width: 100%;
+      max-height: 340px;
+      object-fit: cover;
+      display: block;
+      background: #e2e8f0;
+    }
+
+    .media-caption-bar {
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .img-control-bar {
+      display: inline-flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Engineering Filter Tabs on Page 7 */
+    .eng-filter-tabs {
+      column-span: all;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .eng-tab-btn {
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-muted);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .eng-tab-btn.active {
+      background: var(--brand);
+      color: #ffffff;
+      border-color: var(--brand);
+    }
+
+    /* Page Footer */
+    .page-running-footer {
+      padding: 14px var(--page-padding);
+      border-top: 1px solid var(--border);
+      background: var(--surface-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-page-num {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      color: var(--brand);
+      background: var(--brand-soft);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .page-editor-controls {
+      padding: 10px var(--page-padding);
+      background: #f8fafc;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    ul.clean-list {
+      margin: 6px 0 0 0;
+      padding-left: 18px;
+    }
+
+    ul.clean-list li {
+      margin-bottom: 5px;
+    }
+
+    @media (max-width: 1024px) {
+      .studio-workspace {
+        grid-template-columns: 1fr;
+      }
+      .studio-sidebar {
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .page-nav-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      :root {
+        --page-padding: 20px;
+      }
+      .exec-hero-card {
+        grid-template-columns: 1fr;
+      }
+      .media-figure-card {
+        grid-column: span 12;
+      }
+      .cover-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header & Formatting Studio Bar -->
+  <header class="studio-header">
+    <div class="studio-topbar">
+      <div class="brand-identity">
+        <div class="brand-emblem">LT</div>
+        <div class="brand-title-wrap">
+          <h1>LUMPINI TOWER — E-Book Annual Report Studio</h1>
+          <p>ระบบออกแบบและแก้ไขเล่มรายงานประจำปีและข้อมูลมาตรฐานอาคารลุมพินีทาวเวอร์</p>
+        </div>
+      </div>
+
+      <div class="mode-switch-group" role="group" aria-label="โหมดการใช้งาน">
+        <button type="button" class="mode-btn active" id="btnEditMode" onclick="setAppMode('edit')">
+          ✏️ โหมดแก้ไขเนื้อหา (Edit)
+        </button>
+        <button type="button" class="mode-btn" id="btnReadMode" onclick="setAppMode('read')">
+          📖 โหมดเปิดอ่าน E-Book (Read)
+        </button>
+      </div>
+    </div>
+
+    <div class="studio-toolbar">
+      <!-- Text Formatting -->
+      <div class="tool-group" id="richTextTools">
+        <span class="tool-label">ข้อความ:</span>
+        <button type="button" class="tool-btn" onclick="formatDoc('bold')" title="ตัวหนา (Ctrl+B)"><b>B</b></button>
+        <button type="button" class="tool-btn" onclick="formatDoc('italic')" title="ตัวเอียง (Ctrl+I)"><i>I</i></button>
+        <button type="button" class="tool-btn" onclick="formatDoc('underline')" title="ขีดเส้นใต้ (Ctrl+U)"><u>U</u></button>
+        <button type="button" class="tool-btn" onclick="formatDoc('justifyLeft')" title="ชิดซ้าย">⬅ ซ้าย</button>
+        <button type="button" class="tool-btn" onclick="formatDoc('justifyCenter')" title="กึ่งกลาง">↔ กลาง</button>
+      </div>
+
+      <!-- Font Family & Size -->
+      <div class="tool-group">
+        <span class="tool-label">ฟ้อนต์:</span>
+        <select class="tool-select" id="fontFamilySelect" onchange="changeFontFamily(this.value)" aria-label="เลือกฟ้อนต์">
+          <option value="'Sarabun', sans-serif" selected>Sarabun (สารบรรณ - มาตรฐานทางการ)</option>
+          <option value="'Prompt', sans-serif">Prompt (พร้อม - ทันสมัยอ่านง่าย)</option>
+          <option value="'Kanit', sans-serif">Kanit (คณิต - โมเดิร์นคมชัด)</option>
+          <option value="'Noto Sans Thai', sans-serif">Noto Sans Thai (โนโตะ - สากล)</option>
+          <option value="'Chakra Petch', sans-serif">Chakra Petch (จักรเพชร - วิศวกรรม)</option>
+        </select>
+
+        <select class="tool-select" id="fontSizeSelect" onchange="changeFontSize(this.value)" aria-label="ขนาดตัวอักษร">
+          <option value="14px">ขนาดเล็ก (14px)</option>
+          <option value="15px" selected>มาตรฐาน (15px)</option>
+          <option value="16.5px">ขนาดใหญ่ (16.5px)</option>
+        </select>
+      </div>
+
+      <!-- Page Layout & Orientation -->
+      <div class="tool-group">
+        <span class="tool-label">จัดหน้ากระดาษ:</span>
+        <select class="tool-select" id="viewModeSelect" onchange="changeEbookView(this.value)" aria-label="มุมมอง E-Book">
+          <option value="single" selected>📄 ทีละหน้า (Single Page)</option>
+          <option value="spread">📖 เล่มคู่ 2 หน้า (E-Book Spread)</option>
+          <option value="all">📚 เรียงต่อเนื่องทุกหน้า (Scroll All)</option>
+        </select>
+
+        <select class="tool-select" id="pageSizeSelect" onchange="changePageSize(this.value)" aria-label="ขนาดกระดาษ">
+          <option value="a4" selected>📄 ขนาด A4 (มาตรฐาน)</option>
+          <option value="a5">📄 ขนาด A5 (เล่มเล็ก)</option>
+          <option value="a3">📄 ขนาด A3 (แผ่นพับขนาดใหญ่)</option>
+          <option value="b4">📄 ขนาด B4 (เล่มขนาดยาว)</option>
+        </select>
+
+        <select class="tool-select" id="columnLayoutSelect" onchange="changeColumnLayout(this.value)" aria-label="จำนวนคอลัมน์">
+          <option value="1" selected>1 คอลัมน์มาตรฐาน</option>
+          <option value="2">2 คอลัมน์ (Magazine)</option>
+        </select>
+
+        <select class="tool-select" id="orientationSelect" onchange="changePageOrientation(this.value)" aria-label="แนวกระดาษ">
+          <option value="portrait" selected>A4 แนวตั้ง (Portrait)</option>
+          <option value="landscape">A4 แนวนอน (Landscape)</option>
+        </select>
+
+        <select class="tool-select" id="marginSelect" onchange="changePagePadding(this.value)" aria-label="ระยะขอบกระดาษ">
+          <option value="28px">ขอบแคบ</option>
+          <option value="40px" selected>ขอบมาตรฐาน</option>
+          <option value="54px">ขอบกว้าง</option>
+        </select>
+      </div>
+
+      <!-- Theme Colors -->
+      <div class="tool-group">
+        <span class="tool-label">ธีมสี:</span>
+        <div class="theme-swatches">
+          <button type="button" class="swatch-btn active" style="background: linear-gradient(135deg, #0f2942 50%, #c59b27 50%);" onclick="applyThemePreset('navy', this)" title="Lumpini Navy & Gold"></button>
+          <button type="button" class="swatch-btn" style="background: linear-gradient(135deg, #0f4c3a 50%, #10b981 50%);" onclick="applyThemePreset('emerald', this)" title="Sathorn Emerald Green"></button>
+          <button type="button" class="swatch-btn" style="background: linear-gradient(135deg, #1e293b 50%, #0284c7 50%);" onclick="applyThemePreset('slate', this)" title="Architectural Slate Blue"></button>
+          <button type="button" class="swatch-btn" style="background: linear-gradient(135deg, #432818 50%, #d97706 50%);" onclick="applyThemePreset('bronze', this)" title="Executive Warm Bronze"></button>
+          <button type="button" class="swatch-btn" style="background: linear-gradient(135deg, #4c1d24 50%, #cda434 50%);" onclick="applyThemePreset('burgundy', this)" title="Royal Burgundy"></button>
+        </div>
+        <input type="color" id="customBrandColor" class="color-picker-input" value="#0f2942" onchange="applyCustomColors()" title="เลือกสีหลักเอง">
+        <input type="color" id="customAccentColor" class="color-picker-input" value="#c59b27" onchange="applyCustomColors()" title="เลือกสีเน้นเอง">
+      </div>
+
+      <!-- Insert Image & Content -->
+      <div class="tool-group">
+        <button type="button" class="tool-btn accent-action" onclick="triggerImageUpload()">
+          🖼️ แทรกรูปภาพในหน้านี้
+        </button>
+        <input type="file" id="imageUploadInput" accept="image/*" multiple style="display:none" onchange="handleImageFiles(this.files)">
+        <input type="file" id="execPortraitInput" accept="image/*" style="display:none" onchange="handleExecPortraitFile(this.files)">
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <div class="studio-workspace">
+    <!-- Left Sidebar: Page Navigator & Add Page -->
+    <aside class="studio-sidebar">
+      <div>
+        <div class="sidebar-section-title">
+          <span>สารบัญหน้า E-Book</span>
+          <span id="totalPagesBadge">7 หน้า</span>
+        </div>
+        <div class="page-nav-list" id="sidebarPageList"></div>
+      </div>
+
+      <div class="add-page-box">
+        <div class="sidebar-section-title" style="margin-bottom:2px;">
+          <span>➕ เพิ่มหน้าใหม่ในเล่ม</span>
+        </div>
+        <select class="tool-select" id="newPageTemplateSelect" style="width:100%;" aria-label="เลือกเทมเพลตหน้าใหม่">
+          <option value="standard">📄 หน้าบทความ / รายงานทั่วไป</option>
+          <option value="executive">👔 หน้าสารจากผู้บริหาร / บทสัมภาษณ์</option>
+          <option value="gallery">🖼️ หน้าแกลเลอรีรูปภาพพร้อมคำบรรยาย</option>
+          <option value="table">📊 หน้าตารางสรุปข้อมูลเพิ่มเติม</option>
+        </select>
+        <button type="button" class="tool-btn primary-action" style="width:100%; justify-content:center;" onclick="addNewPage()">
+          + เพิ่มหน้าต่อท้ายเล่ม
+        </button>
+      </div>
+    </aside>
+
+    <!-- Center E-Book Reader & Editor Stage -->
+    <main class="ebook-stage-container" id="ebookStage">
+      <!-- Top E-book Navigation Pill -->
+      <div class="ebook-nav-bar">
+        <button type="button" class="tool-btn" id="btnPrevPage" onclick="navigatePage(-1)">
+          ◀ หน้าก่อนหน้า
+        </button>
+        <div class="page-indicator-pill">
+          <span id="currentPageLabel">หน้าที่ 1 จาก 7</span>
+          <span style="color:#cbd5e1;">|</span>
+          <span id="currentChapterName" style="font-weight:500; color:var(--muted);">หน้าปก & ข้อมูลโครงการ</span>
+        </div>
+        <button type="button" class="tool-btn" id="btnNextPage" onclick="navigatePage(1)">
+          หน้าถัดไป ▶
+        </button>
+      </div>
+
+      <div class="edit-hint-banner">
+        <span>💡 <b>คำแนะนำโหมดแก้ไข:</b> คลิกที่หัวข้อ ข้อความ ตัวเลข หรือตารางในหน้ากระดาษเพื่อพิมพ์แก้ไขได้ทันที ทุกการเปลี่ยนชื่อหน้าจะซิงค์กับ <b>หน้าสารบัญ (หน้าที่ 2)</b> อัตโนมัติ</span>
+        <div style="display:flex; gap:6px;">
+          <button type="button" class="tool-btn" onclick="goToPage(1)">📑 ไปหน้าสารบัญ</button>
+          <button type="button" class="tool-btn" onclick="goToPage(2)">👔 ไปหน้าสารจากผู้บริหาร</button>
+        </div>
+      </div>
+
+      <!-- Pages Viewport -->
+      <div class="ebook-viewport" id="ebookViewport">
+
+        <!-- ================= PAGE 1: COVER & PROJECT OVERVIEW ================= -->
+        <article class="report-page visible-page" data-page-title="หน้าปก & ข้อมูลภาพรวมโครงการ" data-page-desc="ที่ตั้งโครงการ เส้นทางเข้า-ออก สัดส่วนพื้นที่ 89,000 ตร.ม. และรายชื่อผู้รับเหมาหลัก 7 หมวดงาน">
+          <div class="page-running-header">
+            <div class="running-brand"><span class="running-brand-dot"></span> LUMPINI TOWER • ANNUAL REPORT & BUILDING PROFILE</div>
+            <div class="running-section" contenteditable="true">หมวดที่ 01 : ข้อมูลโครงการและโครงสร้างอาคาร</div>
+          </div>
+
+          <div class="page-body">
+            <div class="cover-hero" id="coverHeroSection">
+              <!-- Company Logo Slot -->
+              <div class="cover-logo-wrapper" id="coverLogoWrapper" style="margin-bottom: 20px; display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <div id="coverLogoBox" style="width: 60px; height: 60px; border-radius: 12px; background: rgba(255,255,255,0.15); border: 2px dashed rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; transition: all 0.2s ease;" onclick="document.getElementById('coverLogoInput').click()" title="คลิกเพื่ออัปโหลดโลโก้บริษัท">
+                  <span id="coverLogoPlaceholder" style="font-size: 24px; color: rgba(255,255,255,0.85);">🏢</span>
+                </div>
+                <div style="text-align: left; display: flex; flex-direction: column; gap: 4px;" class="img-control-bar">
+                  <div style="display: flex; gap: 6px; align-items: center;">
+                    <button type="button" class="tool-btn" style="padding: 4px 10px; font-size: 11.5px; background: rgba(255,255,255,0.18); color: #fff; border: 1px solid rgba(255,255,255,0.3);" onclick="document.getElementById('coverLogoInput').click()">📷 อัปโหลดโลโก้บริษัท</button>
+                  </div>
+                  <!-- Logo Tuning Controls -->
+                  <div style="display: flex; gap: 4px; align-items: center; margin-top: 2px; flex-wrap: wrap;">
+                    <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500;">ขนาด:</span>
+                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="adjustCoverLogoSize('45px')">S</button>
+                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="adjustCoverLogoSize('60px')">M</button>
+                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="adjustCoverLogoSize('80px')">L</button>
+                    <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500; margin-left: 4px;">ทรง:</span>
+                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShape('6px')">🔲</button>
+                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShape('50%')">⚪</button>
+                    
+                    <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500; margin-left: 4px;">เงา:</span>
+                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShadow('none')">✕</button>
+                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShadow('0 4px 10px rgba(0,0,0,0.3)')">☁️ นุ่ม</button>
+                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoShadow('0 0 15px rgba(255,255,255,0.8)')">✨ เรืองแสง</button>
+
+                    <span style="font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 500; margin-left: 4px;">ขอบ:</span>
+                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoBorder('none')">✕</button>
+                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoBorder('2px solid #ffffff')">⚪ ขาว</button>
+                    <button type="button" class="mini-icon-btn" style="background: rgba(255,255,255,0.2); color: #fff; width: auto; padding: 1px 6px; font-size: 10px;" onclick="toggleCoverLogoBorder('2px solid var(--accent)')">🌟 ทอง</button>
+                  </div>
+                </div>
+                <input type="file" id="coverLogoInput" accept="image/*" style="display:none" onchange="handleCoverLogoFile(this.files)">
+              </div>
+
+              <div class="cover-badge" contenteditable="true">ANNUAL BUILDING REPORT & DIRECTORY</div>
+              <h2 class="cover-title" contenteditable="true">LUMPINI TOWER (อาคารลุมพินีทาวเวอร์)</h2>
+              <p class="cover-subtitle" contenteditable="true">รายงานประจำปีและคู่มือมาตรฐานการบริหารจัดการอาคารชุดสำนักงาน</p>
+              <div class="cover-address-bar" contenteditable="true">
+                <strong>ที่ตั้งโครงการ:</strong> 1168 อาคารลุมพินี ทาวเวอร์ ถนนพระราม 4 แขวงทุ่งมหาเมฆ เขตสาทร กรุงเทพมหานคร 10120<br>
+                <strong>โทรศัพท์:</strong> 02-6776356-7 &nbsp;|&nbsp; <strong>โทรสาร (Fax):</strong> 02-286-9856
+              </div>
+              
+              <!-- Cover Image Customization Controls -->
+              <div class="img-control-bar" style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; justify-content: flex-start;">
+                <button type="button" class="tool-btn" style="background: rgba(255,255,255,0.25); color: #fff; border: 1px solid rgba(255,255,255,0.4); font-size: 12px;" onclick="document.getElementById('coverImageInput').click()">
+                  📷 อัปโหลดภาพพื้นหลังหน้าปก
+                </button>
+                <button type="button" class="tool-btn" style="background: rgba(220,38,38,0.25); color: #fecaca; border: 1px solid rgba(220,38,38,0.4); font-size: 12px;" onclick="removeCoverImage()">
+                  🗑️ ใช้สีธีมมาตรฐาน
+                </button>
+                <button type="button" class="tool-btn" style="background: rgba(197,155,39,0.3); color: #ffe69c; border: 1px solid #c59b27; font-size: 12px;" onclick="toggleCoverLayout(this)" id="btnToggleCoverLayout">
+                  ✨ สลับเป็น "ปกภาพเต็มหน้า A4"
+                </button>
+                
+                <span style="font-size: 12px; color: rgba(255,255,255,0.85); font-weight: 600; margin-left: 8px;">🎨 ดีไซน์หน้าปก:</span>
+                <select class="tool-select" style="background: rgba(255,255,255,0.18); color: #fff; border: 1px solid rgba(255,255,255,0.3); font-size: 12px;" onchange="applyCoverTemplate(this.value)" aria-label="เลือกดีไซน์หน้าปก">
+                  <option value="navy">🏢 Lumpini Corporate (กรมท่า-ทอง)</option>
+                  <option value="light">🏳️ Modern Minimalist (ขาวคลีน-โมเดิร์น)</option>
+                  <option value="dark">🌑 Executive Charcoal (เทาถ่าน-สปอร์ต)</option>
+                </select>
+
+                <input type="file" id="coverImageInput" accept="image/*" style="display:none" onchange="handleCoverImageFile(this.files)">
+              </div>
+            </div>
+
+            <!-- Key Building Metrics -->
+            <div class="kpi-grid">
+              <div class="kpi-card highlight">
+                <div class="kpi-label" contenteditable="true">พื้นที่รวมทั้งโครงการ</div>
+                <div class="kpi-value" contenteditable="true">89,000</div>
+                <div class="kpi-unit" contenteditable="true">ตารางเมตร</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label" contenteditable="true">พื้นที่ห้องชุดรวม</div>
+                <div class="kpi-value" contenteditable="true">49,934.94</div>
+                <div class="kpi-unit" contenteditable="true">ตร.ม. (เจ้าของร่วม 113 ยูนิต)</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label" contenteditable="true">พื้นที่ส่วนกลาง</div>
+                <div class="kpi-value" contenteditable="true">39,065.06</div>
+                <div class="kpi-unit" contenteditable="true">ตารางเมตร</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label" contenteditable="true">ความสูงและที่จอดรถ</div>
+                <div class="kpi-value" contenteditable="true">38 ชั้น</div>
+                <div class="kpi-unit" contenteditable="true">+ ใต้ดิน 1 ชั้น | จอดรถ 806 คัน</div>
+              </div>
+            </div>
+
+            <div class="two-col-cards">
+              <div class="info-panel tinted">
+                <h3 class="sub-heading" contenteditable="true">เส้นทางเข้า - ออกโครงการ (2 เส้นทางหลัก)</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li><strong>เส้นทางที่ 1:</strong> เข้า - ออก จากถนนพระรามสี่ โดยตรง</li>
+                  <li><strong>เส้นทางที่ 2:</strong> เข้า - ออก จากถนนสาทร ซอย 1 (เข้าทางสาทรซอย 1 เชื่อมต่อซอยสะพานคู่)</li>
+                </ul>
+              </div>
+
+              <div class="info-panel">
+                <h3 class="sub-heading" contenteditable="true">ลักษณะโครงสร้างทางวิศวกรรม</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li>อาคารคอนกรีตเสริมเหล็กสูง <strong>38 ชั้น</strong> และชั้นใต้ดิน <strong>1 ชั้น</strong></li>
+                  <li>พื้นชั้นทั่วไปเป็นพื้นท้องแบนเสริมเหล็กรับแรงดึง (Post-Tensioned Flat Slab)</li>
+                  <li>จำนวนเจ้าของร่วม <strong>113 ยูนิต</strong> | ที่จอดรถ <strong>806 คัน</strong> (ไม่รวมซ้อนคัน)</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="sub-heading" contenteditable="true">การออกแบบก่อสร้างและรายละเอียดผู้รับเหมาโครงการ</h3>
+            <div class="table-wrapper">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th style="width:60px;">ลำดับ</th>
+                    <th>หมวดงานออกแบบและวิศวกรรมอาคาร</th>
+                    <th>บริษัทผู้รับผิดชอบโครงการ</th>
+                  </tr>
+                </thead>
+                <tbody contenteditable="true">
+                  <tr>
+                    <td class="num-col">1</td>
+                    <td>งานอาคารและ LANDSCAPE</td>
+                    <td><strong>CHRISTIANI &amp; NIELSEN (THAI) PUBLIC CO., LTD.</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="num-col">2</td>
+                    <td>งานออกแบบสถาปัตยกรรมอาคาร</td>
+                    <td><strong>P.A. DESIGN CO., LTD.</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="num-col">3</td>
+                    <td>ตกแต่งภายในโถงลิฟต์โดยสาร, ห้องน้ำส่วนกลาง, พื้นที่ส่วนกลาง ชั้น 1–37 (ช่วงปรับปรุง)</td>
+                    <td><strong>CANDID INTERIOR CO., LTD.</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="num-col">4</td>
+                    <td>งานระบบไฟฟ้า</td>
+                    <td><strong>BEWCON CO., LTD.</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="num-col">5</td>
+                    <td>งานระบบสุขาภิบาล และดับเพลิง</td>
+                    <td><strong>FIRM PRODUCT &amp; ENGINEERING CO., LTD.</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="num-col">6</td>
+                    <td>งานระบบปรับอากาศ</td>
+                    <td><strong>JARDINE MATHESON (THAILAND) CO., LTD.</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="num-col">7</td>
+                    <td>งานปรับปรุงลิฟต์</td>
+                    <td><strong>JARDINE SCHINDLER (THAILAND) CO., LTD.</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="page-media-grid"></div>
+          </div>
+
+          <div class="page-editor-controls">
+            <span style="font-size:12px; color:var(--muted);">เครื่องมือประจำหน้า:</span>
+            <div style="display:flex; gap:6px;">
+              <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
+              <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+            </div>
+          </div>
+
+          <div class="page-running-footer">
+            <span contenteditable="true">นิติบุคคลอาคารชุดลุมพินีทาวเวอร์ • 1168 ถนนพระราม 4 เขตสาทร กทม.</span>
+            <span class="footer-page-num">หน้า 1</span>
+          </div>
+        </article>
+
+        <!-- ================= PAGE 2: TABLE OF CONTENTS (สารบัญ) ================= -->
+        <article class="report-page" data-page-title="สารบัญเล่มรายงาน (Table of Contents)" data-page-desc="โครงสร้างเนื้อหาทั้งหมดในเล่มรายงานประจำปีและคู่มือมาตรฐานอาคารลุมพินีทาวเวอร์ พร้อมลิงก์เปิดหน้าอัตโนมัติ">
+          <div class="page-running-header">
+            <div class="running-brand"><span class="running-brand-dot"></span> LUMPINI TOWER • TABLE OF CONTENTS</div>
+            <div class="running-section" contenteditable="true">สารบัญเล่มรายงานประจำปี</div>
+          </div>
+
+          <div class="page-body">
+            <div class="section-header">
+              <div class="section-kicker" contenteditable="true">CONTENTS &amp; REPORT DIRECTORY</div>
+              <h2 class="section-title" contenteditable="true">สารบัญเล่มรายงานประจำปี (Table of Contents)</h2>
+            </div>
+
+            <div class="info-panel tinted" contenteditable="true">
+              เอกสารรายงานประจำปีและข้อมูลมาตรฐานอาคารชุดสำนักงาน <strong>อาคารลุมพินีทาวเวอร์ (LUMPINI TOWER)</strong> เล่มนี้ รวบรวมข้อมูลโครงสร้างโครงการ สารจากฝ่ายบริหาร เวลาทำการ มาตรฐานความปลอดภัย ระเบียบการใช้บริการอาคาร และบัญชีรายการเครื่องจักรวิศวกรรมทั้ง 5 ระบบหลัก ท่านสามารถคลิกที่รายการในสารบัญด้านล่างเพื่อเปิดไปยังหน้านั้นได้ทันที
+            </div>
+
+            <!-- Dynamic Interactive TOC Container -->
+            <div class="toc-grid" id="dynamicTocContainer"></div>
+
+            <div class="two-col-cards">
+              <div class="info-panel">
+                <h3 class="sub-heading" contenteditable="true">สรุปตัวเลขสำคัญประจำอาคาร</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li><strong>พื้นที่อาคารรวม:</strong> 89,000 ตารางเมตร (สูง 38 ชั้น + ชั้นใต้ดิน 1 ชั้น)</li>
+                  <li><strong>ระบบลิฟต์โดยสาร:</strong> 12 ตัว (Low Zone 6 ตัว / High Zone 6 ตัว)</li>
+                  <li><strong>ระบบความปลอดภัย:</strong> กล้อง CCTV 283 ตัว (5 DVR), ประตูหนีไฟ 67 ประตู, ตู้ FHC 77 ตู้</li>
+                </ul>
+              </div>
+              <div class="info-panel warning-box">
+                <h3 class="sub-heading" contenteditable="true">พลังงานสะอาดและความคุ้มครอง</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li><strong>พลังงานแสงอาทิตย์ (Solar Cell):</strong> ติดตั้งครบ 3 เฟส (150 แผง + 94 แผง + 72 แผง)</li>
+                  <li><strong>ทุนประกันภัยอาคารรวม:</strong> 2,022,600,000 บาท (แอกซ่า, เมืองไทย, วิริยะ)</li>
+                  <li><strong>ศูนย์บริการนิติบุคคลฯ:</strong> ชั้น 1 โทร. 02-677-6356-7 (ฉุกเฉิน 24 ชม.)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="page-media-grid"></div>
+          </div>
+
+          <div class="page-editor-controls">
+            <span style="font-size:12px; color:var(--muted);">เครื่องมือประจำหน้า:</span>
+            <div style="display:flex; gap:6px;">
+              <button type="button" class="tool-btn" onclick="renderTableOfContents()">🔄 อัปเดตสารบัญ</button>
+              <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
+              <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+            </div>
+          </div>
+
+          <div class="page-running-footer">
+            <span contenteditable="true">นิติบุคคลอาคารชุดลุมพินีทาวเวอร์ • สารบัญเล่มรายงาน</span>
+            <span class="footer-page-num">หน้า 2</span>
+          </div>
+        </article>
+
+        <!-- ================= PAGE 3: EXECUTIVE MESSAGE (สารจากผู้บริหาร) ================= -->
+        <article class="report-page" data-page-title="สารจากผู้บริหารและคณะผู้จัดการอาคาร" data-page-desc="วิสัยทัศน์การบริหารจัดการอาคารลุมพินีทาวเวอร์ มาตรฐานความปลอดภัย พลังงานสะอาด และทีมบริหารอาคาร">
+          <div class="page-running-header">
+            <div class="running-brand"><span class="running-brand-dot"></span> LUMPINI TOWER • EXECUTIVE MESSAGE</div>
+            <div class="running-section" contenteditable="true">สารจากผู้บริหารและฝ่ายจัดการอาคาร</div>
+          </div>
+
+          <div class="page-body">
+            <div class="section-header">
+              <div class="section-kicker" contenteditable="true">EXECUTIVE MESSAGE &amp; MANAGEMENT VISION</div>
+              <h2 class="section-title" contenteditable="true">สารจากผู้บริหารและฝ่ายบริหารอาคารลุมพินีทาวเวอร์</h2>
+            </div>
+
+            <div class="exec-hero-card">
+              <div class="exec-portrait-box" id="execPortraitWrapper" style="width: 220px; transition: all 0.2s ease;">
+                <div class="exec-avatar-preview" id="execAvatarBox" style="border-radius: 8px; transition: all 0.2s ease;">
+                  <div style="padding:12px; text-align:center;">
+                    <div style="font-size:32px; margin-bottom:6px;">🏢</div>
+                    <div style="font-weight:700; font-size:13px;">LUMPINI TOWER</div>
+                    <div style="font-size:11px; color:#cbd5e1; margin-top:2px;">Building Management</div>
+                  </div>
+                </div>
+                <div contenteditable="true" style="font-weight:700; color:var(--brand); font-size:14px;">คุณรัฐปกรณ์ วิสาระ</div>
+                <div contenteditable="true" style="font-size:12px; color:var(--muted); margin-bottom:8px;">ผู้จัดการอาคารลุมพินีทาวเวอร์<br>โทร. 065-005-5858</div>
+                <button type="button" class="tool-btn portrait-upload-btn" style="width:100%; justify-content:center; font-size:11.5px; margin-bottom: 6px;" onclick="document.getElementById('execPortraitInput').click()">
+                  📷 เปลี่ยนรูปผู้บริหาร
+                </button>
+                
+                <!-- Portrait Tuning Controls -->
+                <div class="portrait-tuning-controls" style="margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px; display: flex; flex-direction: column; gap: 4px;">
+                  <span style="font-size: 11px; color: var(--muted); font-weight: 600; text-align: left;">ปรับแต่งรูปภาพ:</span>
+                  <div style="display: flex; gap: 4px; justify-content: center;">
+                    <button type="button" class="mini-icon-btn" title="ขนาดเล็ก" onclick="adjustExecPortraitWidth('160px')">S</button>
+                    <button type="button" class="mini-icon-btn" title="ขนาดกลาง" onclick="adjustExecPortraitWidth('220px')">M</button>
+                    <button type="button" class="mini-icon-btn" title="ขนาดใหญ่" onclick="adjustExecPortraitWidth('280px')">L</button>
+                  </div>
+                  <div style="display: flex; gap: 4px; justify-content: center; margin-top: 2px;">
+                    <button type="button" class="mini-icon-btn" style="width: auto; padding: 2px 6px; font-size: 10px;" onclick="toggleExecPortraitRadius('8px')">🔲 เหลี่ยม</button>
+                    <button type="button" class="mini-icon-btn" style="width: auto; padding: 2px 6px; font-size: 10px;" onclick="toggleExecPortraitRadius('50%')">⚪ กลม</button>
+                  </div>
+                </div>
+              </div>
+
+              <div style="flex: 1; min-width: 0;">
+                <span class="sample-draft-badge" contenteditable="true">📝 ข้อความร่างสารจากผู้บริหาร (คลิกเพื่อแก้ไขข้อความได้ตามต้องการ)</span>
+                <blockquote class="exec-quote-banner" contenteditable="true">
+                  “มุ่งมั่นยกระดับมาตรฐานอาคารชุดสำนักงานลุมพินีทาวเวอร์ สู่ความมั่นคง ปลอดภัย ประหยัดพลังงาน และส่งมอบคุณภาพบริการที่ดีที่สุดแก่เจ้าของร่วมทั้ง 113 ยูนิต และผู้ใช้อาคารทุกท่าน”
+                </blockquote>
+                <div contenteditable="true">
+                  <p style="margin-top:0;">เรียน ท่านเจ้าของร่วม ผู้เช่าพื้นที่ และผู้ใช้อาคารลุมพินีทาวเวอร์ทุกท่าน,</p>
+                  <p>ในรอบปีที่ผ่านมา สำนักงานนิติบุคคลอาคารชุดลุมพินีทาวเวอร์ได้ดำเนินงานบริหารจัดการและบำรุงรักษาพื้นที่อาคารรวมกว่า <strong>89,000 ตารางเมตร</strong> (แบ่งเป็นพื้นที่ห้องชุด 49,934.94 ตร.ม. และพื้นที่ส่วนกลาง 39,065.06 ตร.ม.) ทั้ง 38 ชั้น และชั้นใต้ดิน 1 ชั้น ให้มีความพร้อมใช้งานสูงสุดในทุกมิติ ทั้งด้านวิศวกรรมอาคาร ระบบปรับอากาศส่วนกลาง ระบบลิฟต์โดยสาร Schindler ทั้ง 12 ตัว และพื้นที่จอดรถรองรับ 806 คัน</p>
+                  <p>นอกจากนี้ ทางอาคารยังให้ความสำคัญกับการพัฒนาด้านพลังงานสะอาดและความยั่งยืน ด้วยการติดตั้งระบบผลิตไฟฟ้าพลังงานแสงอาทิตย์ (Solar Cell) ครบทั้ง <strong>3 เฟส</strong> บริเวณชั้นดาดฟ้าและอาคารประกอบ ควบคู่ไปกับระบบรักษาความปลอดภัยตลอด 24 ชั่วโมงผ่านกล้อง CCTV <strong>283 ตัว</strong> ระบบป้องกันอัคคีภัยมาตรฐานสากล และความคุ้มครองประกันภัยอาคารรวมมูลค่ากว่า <strong>2,022,600,000 บาท</strong></p>
+                  <p style="margin-bottom:0;">ในนามของคณะผู้บริหารและทีมงานฝ่ายอาคาร ขอขอบพระคุณท่านเจ้าของร่วมและผู้ใช้อาคารทุกท่านที่ให้ความไว้วางใจและให้ความร่วมมือในการปฏิบัติตามระเบียบของอาคารด้วยดีเสมอมา</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="sub-heading" contenteditable="true">โครงสร้างคณะผู้บริหารและหัวหน้างานประจำอาคารลุมพินีทาวเวอร์</h3>
+            <div class="table-wrapper">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>ชื่อ - นามสกุล / หน่วยงาน</th>
+                    <th>ตำแหน่งและความรับผิดชอบ</th>
+                    <th>หมายเลขโทรศัพท์ติดต่อ</th>
+                  </tr>
+                </thead>
+                <tbody contenteditable="true">
+                  <tr>
+                    <td><strong>สำนักงานนิติบุคคลอาคารลุมพินีทาวเวอร์</strong></td>
+                    <td>ศูนย์ประสานงานกลาง ชั้น 1 (จันทร์–ศุกร์ 08.00–18.00 น. / เสาร์ 08.00–12.00 น.)</td>
+                    <td><strong>02-677-6356-7, 086-317-0140</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>คุณรัฐปกรณ์ วิสาระ</strong></td>
+                    <td>ผู้จัดการอาคาร (Building Manager)</td>
+                    <td><strong>065-005-5858</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>คุณสุกัญญา แซมทอง</strong></td>
+                    <td>ผู้ช่วยผู้จัดการอาคาร (Assistant Building Manager)</td>
+                    <td><strong>095-093-5302</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>คุณนฤเบศร์ ภูษาทอง</strong></td>
+                    <td>หัวหน้าช่างอาคาร (Chief Building Engineer)</td>
+                    <td><strong>098-926-2425</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="two-col-cards">
+              <div class="info-panel">
+                <h3 class="sub-heading" contenteditable="true">พันธกิจด้านวิศวกรรมและพลังงาน</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li>บริหารระบบทำความเย็น Cooling Tower (CT.1–6) และระบบ VSD ควบคุมประสิทธิภาพ</li>
+                  <li>ผลิตพลังงานสะอาดด้วย Solar Cell Phase 1 (400 kW / 150 แผง), Phase 2 (94 แผง) และ Phase 3 (72 แผง)</li>
+                </ul>
+              </div>
+              <div class="info-panel tinted">
+                <h3 class="sub-heading" contenteditable="true">พันธกิจด้านความปลอดภัยและบริการ</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li>ดูแลความปลอดภัยตลอด 24 ชม. พร้อมศูนย์ควบคุมห้องรักษาความปลอดภัย ชั้น 35 และ CCTV ชั้น M</li>
+                  <li>รักษามาตรฐานความสะอาดและสุขอนามัยพื้นที่ส่วนกลางชั้น 1–37 อย่างเคร่งครัดทุกวัน</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="page-media-grid"></div>
+          </div>
+
+          <div class="page-editor-controls">
+            <span style="font-size:12px; color:var(--muted);">เครื่องมือประจำหน้า:</span>
+            <div style="display:flex; gap:6px;">
+              <button type="button" class="tool-btn" onclick="document.getElementById('execPortraitInput').click()">📷 อัปโหลดรูปผู้บริหาร</button>
+              <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
+              <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+            </div>
+          </div>
+
+          <div class="page-running-footer">
+            <span contenteditable="true">นิติบุคคลอาคารชุดลุมพินีทาวเวอร์ • สารจากผู้บริหาร</span>
+            <span class="footer-page-num">หน้า 3</span>
+          </div>
+        </article>
+
+        <!-- ================= PAGE 4: OPERATING HOURS & CONTACTS ================= -->
+        <article class="report-page" data-page-title="เวลาทำการ & ข้อมูลติดต่อฝ่ายอาคาร" data-page-desc="กำหนดเวลาทำการนิติบุคคลฯ เวลาเปิด-ปิดประตูอาคารทั้ง 5 จุด และเบอร์โทรศัพท์ฉุกเฉิน 24 ชม.">
+          <div class="page-running-header">
+            <div class="running-brand"><span class="running-brand-dot"></span> LUMPINI TOWER • BUILDING OPERATIONS</div>
+            <div class="running-section" contenteditable="true">หมวดที่ 01–02 : เวลาทำการและข้อมูลติดต่อฝ่ายอาคาร</div>
+          </div>
+
+          <div class="page-body">
+            <div class="section-header">
+              <div class="section-kicker" contenteditable="true">SECTION 01 &amp; 02 — OPERATING HOURS &amp; DIRECTORY</div>
+              <h2 class="section-title" contenteditable="true">กำหนดเวลาทำการ เวลาเปิด-ปิดประตู และข้อมูลติดต่อฝ่ายอาคาร</h2>
+            </div>
+
+            <div class="two-col-cards">
+              <div class="info-panel tinted">
+                <h3 class="sub-heading" contenteditable="true">1. กำหนดเวลาทำการสำนักงาน (OFFICE)</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li><strong>วันจันทร์ – วันศุกร์:</strong> เปิดเวลา 08.00 น.</li>
+                  <li><strong>วันเสาร์:</strong> เปิดเวลา 08.00 น. – 12.00 น.</li>
+                  <li><strong>วันอาทิตย์ และวันหยุดนักขัตฤกษ์:</strong> ปิดทำการ</li>
+                </ul>
+              </div>
+
+              <div class="info-panel">
+                <h3 class="sub-heading" contenteditable="true">2. สำนักงานนิติบุคคลอาคารลุมพินี ทาวเวอร์</h3>
+                <p style="margin:0 0 6px 0;" contenteditable="true"><strong>สถานที่ตั้ง:</strong> ชั้น 1 ของอาคารลุมพินี ทาวเวอร์</p>
+                <ul class="clean-list" contenteditable="true">
+                  <li><strong>วันจันทร์ – วันศุกร์:</strong> 08.00 น. – 18.00 น.</li>
+                  <li><strong>วันเสาร์:</strong> 08.00 น. – 12.00 น.</li>
+                  <li><strong>วันอาทิตย์ และวันหยุดนักขัตฤกษ์:</strong> ปิดทำการ</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="sub-heading" contenteditable="true">ตารางกำหนดเวลาเปิด - ปิดประตูเข้าอาคาร (5 จุดหลัก)</h3>
+            <div class="table-wrapper">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>จุดประตูเข้า - ออกอาคาร</th>
+                    <th>วันเปิดให้บริการ</th>
+                    <th>กำหนดเวลาเปิด - ปิด และระบบควบคุม</th>
+                  </tr>
+                </thead>
+                <tbody contenteditable="true">
+                  <tr>
+                    <td><strong>1. ประตูฝั่งลานจอด ชั้น 1 (สามแยก)</strong></td>
+                    <td>ทุกวัน</td>
+                    <td>เปิดให้บริการ <strong>24 ชั่วโมง</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>2. ประตูฝั่งหน้าอาคาร ชั้น 1</strong></td>
+                    <td>ทุกวัน</td>
+                    <td>เวลา <strong>06.00 – 19.00 น.</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>3. ประตูฝั่งขนของ (ไชยแพทย์)</strong></td>
+                    <td>ทุกวัน</td>
+                    <td>เวลา <strong>05.00 – 20.00 น.</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>4. ประตูลานจอดรถ ชั้น 2–10</strong></td>
+                    <td>วันจันทร์ – วันเสาร์<br>วันจันทร์ – วันเสาร์<br>วันอาทิตย์</td>
+                    <td>เวลา <strong>06.00 – 20.00 น.</strong> (ทำงานด้วยระบบอัตโนมัติ)<br>เวลา <strong>20.00 – 05.00 น.</strong> (ทำงานด้วยระบบคีย์การ์ด)<br>ตลอดเวลา <strong>24 ชั่วโมง</strong> (ทำงานด้วยระบบคีย์การ์ด)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>5. ประตูรั้วหลังอาคาร ชั้น 1</strong></td>
+                    <td>วันจันทร์ – วันศุกร์<br>วันเสาร์<br>วันอาทิตย์</td>
+                    <td>เวลา <strong>05.00 – 20.00 น.</strong><br>เวลา <strong>05.00 – 14.00 น.</strong><br><strong>ปิดทำการ</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="sub-heading" contenteditable="true">หมายเลขโทรศัพท์ติดต่อกรณีเกิดเหตุฉุกเฉินตลอด 24 ชั่วโมง</h3>
+            <div class="table-wrapper">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>หน่วยงาน / รายชื่อผู้บริหารอาคาร</th>
+                    <th>ตำแหน่ง</th>
+                    <th>หมายเลขโทรศัพท์ติดต่อ</th>
+                  </tr>
+                </thead>
+                <tbody contenteditable="true">
+                  <tr>
+                    <td><strong>สำนักงานนิติบุคคลอาคารลุมพินีทาวเวอร์</strong></td>
+                    <td>ศูนย์ประสานงานนิติบุคคลฯ (ชั้น 1)</td>
+                    <td><strong>02-677-6356-7, 086-317-0140</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>คุณรัฐปกรณ์ วิสาระ</strong></td>
+                    <td>ผู้จัดการอาคาร</td>
+                    <td><strong>065-005-5858</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>คุณสุกัญญา แซมทอง</strong></td>
+                    <td>ผู้ช่วยผู้จัดการอาคาร</td>
+                    <td><strong>095-093-5302</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>คุณนฤเบศร์ ภูษาทอง</strong></td>
+                    <td>หัวหน้าช่างอาคาร</td>
+                    <td><strong>098-926-2425</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="page-media-grid"></div>
+          </div>
+
+          <div class="page-editor-controls">
+            <span style="font-size:12px; color:var(--muted);">เครื่องมือประจำหน้า:</span>
+            <div style="display:flex; gap:6px;">
+              <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
+              <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+            </div>
+          </div>
+
+          <div class="page-running-footer">
+            <span contenteditable="true">นิติบุคคลอาคารชุดลุมพินีทาวเวอร์ • ข้อมูลเวลาทำการและเบอร์ติดต่อฉุกเฉิน</span>
+            <span class="footer-page-num">หน้า 4</span>
+          </div>
+        </article>
+
+        <!-- ================= PAGE 5: SECURITY, HOUSEKEEPING, SAFETY & INSURANCE ================= -->
+        <article class="report-page" data-page-title="ความปลอดภัย ความสะอาด & ประกันภัยอาคาร" data-page-desc="รปภ. LSS Solutions, แม่บ้าน LPC, ระบบดับเพลิง, CCTV 283 ตัว และทุนประกันภัย 2,022.6 ล้านบาท">
+          <div class="page-running-header">
+            <div class="running-brand"><span class="running-brand-dot"></span> LUMPINI TOWER • SAFETY, SECURITY &amp; HYGIENE</div>
+            <div class="running-section" contenteditable="true">หมวดที่ 03–07 &amp; 09 : ความปลอดภัย ความสะอาด และประกันภัย</div>
+          </div>
+
+          <div class="page-body">
+            <div class="section-header">
+              <div class="section-kicker" contenteditable="true">SECTION 03–07 &amp; 09 — SECURITY, HOUSEKEEPING &amp; INSURANCE</div>
+              <h2 class="section-title" contenteditable="true">การรักษาความปลอดภัย ความสะอาด ระบบป้องกันอัคคีภัย และประกันภัยอาคาร</h2>
+            </div>
+
+            <div class="kpi-grid">
+              <div class="kpi-card">
+                <div class="kpi-label" contenteditable="true">กล้องวงจรปิด (CCTV)</div>
+                <div class="kpi-value" contenteditable="true">283 ตัว</div>
+                <div class="kpi-unit" contenteditable="true">พร้อมระบบบันทึก 5 DVR (ดูแล 24 ชม.)</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label" contenteditable="true">ประตูหนีไฟ / ตู้ FHC</div>
+                <div class="kpi-value" contenteditable="true">67 / 77</div>
+                <div class="kpi-unit" contenteditable="true">ประตูหนีไฟ 67 บาน • ตู้ดับเพลิง 77 ตู้</div>
+              </div>
+              <div class="kpi-card highlight">
+                <div class="kpi-label" contenteditable="true">รวมทุนประกันภัยทั้งสิ้น</div>
+                <div class="kpi-value" contenteditable="true">2,022.6 ล้าน</div>
+                <div class="kpi-unit" contenteditable="true">2,022,600,000 บาท (3 บริษัทประกันภัย)</div>
+              </div>
+            </div>
+
+            <div class="two-col-cards">
+              <div class="info-panel">
+                <h3 class="sub-heading" contenteditable="true">3. พนักงานรักษาความปลอดภัยและต้อนรับ</h3>
+                <p style="margin:0 0 6px 0;" contenteditable="true"><strong>บริษัทรักษาความปลอดภัย:</strong> บริษัท รักษาความปลอดภัย แอลเอสเอส โซลูชั่นส์ จำกัด</p>
+                <ul class="clean-list" contenteditable="true">
+                  <li>ให้บริการความปลอดภัยตลอด 24 ชม. ห้องรักษาความปลอดภัยตั้งอยู่ที่ <strong>ชั้น 35</strong> (โทร. 02-677-6356-57) และจุดประชาสัมพันธ์ 1 จุด บริเวณ <strong>LOBBY ชั้น 1</strong></li>
+                  <li><strong>ภายในอาคาร:</strong> ผลัดเช้า จ.–ศ. (07.00–19.00 น.) <strong>6 อัตรา</strong> | ผลัดดึก ส.–อา. (19.00–07.00 น.) <strong>4 อัตรา</strong></li>
+                  <li><strong>ลานจอดรถ:</strong> จ.–ศ. ผลัดเช้า <strong>7 อัตรา</strong>, ผลัดดึก <strong>1 อัตรา</strong> | ส.–อา. ผลัดเช้า <strong>3 อัตรา</strong>, ผลัดดึก <strong>1 อัตรา</strong></li>
+                </ul>
+              </div>
+
+              <div class="info-panel">
+                <h3 class="sub-heading" contenteditable="true">4. พนักงานทำความสะอาด (แม่บ้าน)</h3>
+                <p style="margin:0 0 6px 0;" contenteditable="true"><strong>บริษัททำความสะอาด:</strong> บริษัท แอล พี ซี วิสาหกิจเพื่อสังคม จำกัด (ปฏิบัติงาน 07.00–19.00 น.)</p>
+                <ul class="clean-list" contenteditable="true">
+                  <li><strong>อัตรากำลัง:</strong> จันทร์–ศุกร์ <strong>18 อัตรา</strong> | เสาร์–อาทิตย์ <strong>6 อัตรา</strong> | วันหยุดนักขัตฤกษ์ <strong>5 อัตรา</strong></li>
+                  <li><strong>ห้องน้ำส่วนกลาง:</strong> เปิด 06.00–19.00 น. (ทำความสะอาด 2 รอบ: เช้า <strong>07.30 น.</strong> / บ่าย <strong>13.30 น.</strong>)</li>
+                  <li><strong>ข้อห้ามท่อระบายน้ำ:</strong> ห้ามเปิดท่อหรือเทเศษอาหารเด็ดขาด ฝ่าฝืนปรับ <strong>5,000 บาท/ครั้ง</strong></li>
+                  <li><strong>การทิ้งขยะ:</strong> ห้องเก็บขยะลานจอดมอเตอร์ไซค์ ชั้น 1 เปิดเวลา <strong>16.00–16.30 น.</strong> บรรจุถุงดำมัดแน่น และใช้ลิฟต์ขนของเท่านั้น</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="two-col-cards">
+              <div class="info-panel tinted">
+                <h3 class="sub-heading" contenteditable="true">5. ระบบความปลอดภัยและระงับอัคคีภัย &amp; 9. CCTV</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li><strong>ประตูหนีไฟ:</strong> 67 ประตู | <strong>ตู้ FHC:</strong> 77 ตู้</li>
+                  <li><strong>ถังดับเพลิง CO2 (ถังสีแดง):</strong> ดับเพลิงจากน้ำมัน ไฟฟ้า และอิเล็กทรอนิกส์</li>
+                  <li><strong>หัวฉีด Sprinkler:</strong> ทำงานอัตโนมัติที่อุณหภูมิ <strong>57°C (137°F)</strong></li>
+                  <li><strong>Smoke Detector &amp; Manual Station:</strong> ตรวจจับควันอัตโนมัติและดึงสัญญาณแจ้งเหตุด้วยมือ</li>
+                  <li><strong>กล้อง CCTV 283 ตัว (5 DVR):</strong> ติดตั้งรอบอาคาร ทางเข้า-ออก ลิฟต์ Lobby หน้าห้องน้ำส่วนกลาง และลานจอดรถ ดูแล 24 ชม.</li>
+                </ul>
+              </div>
+
+              <div class="info-panel warning-box">
+                <h3 class="sub-heading" contenteditable="true">6. การกำจัดแมลง &amp; 7. การประกันภัยอาคาร</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li><strong>การกำจัดแมลง:</strong> บริษัท โฟลแมก ไบโอเทค จำกัด ดำเนินการฉีดยาฆ่าแมลง <strong>เดือนละ 1 ครั้ง</strong></li>
+                  <li><strong>ผู้รับประกันภัยร่วม 3 บริษัท:</strong> บมจ.แอกซ่าประกันภัย, บมจ.เมืองไทยประกันภัย, บมจ.วิริยะประกันภัย</li>
+                  <li><strong>มูลค่าความคุ้มครองโครงการ (รวมฐานรากสิ่งปลูกสร้าง):</strong> 2,200,000 บาท</li>
+                  <li><strong>ทรัพย์สินในห้อง:</strong> 22,600,000 บาท</li>
+                  <li><strong>รวมทุนประกันภัยทั้งสิ้น:</strong> <strong>2,022,600,000 บาท</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="page-media-grid"></div>
+          </div>
+
+          <div class="page-editor-controls">
+            <span style="font-size:12px; color:var(--muted);">เครื่องมือประจำหน้า:</span>
+            <div style="display:flex; gap:6px;">
+              <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
+              <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+            </div>
+          </div>
+
+          <div class="page-running-footer">
+            <span contenteditable="true">นิติบุคคลอาคารชุดลุมพินีทาวเวอร์ • มาตรฐานความปลอดภัยและประกันภัยอาคาร</span>
+            <span class="footer-page-num">หน้า 5</span>
+          </div>
+        </article>
+
+        <!-- ================= PAGE 6: ACCESS CARDS, ELEVATORS, HVAC & PARKING ================= -->
+        <article class="report-page" data-page-title="ระเบียบอาคาร ลิฟต์ ระบบปรับอากาศ & ที่จอดรถ" data-page-desc="บัตรผ่าน Access Card, คู่สายโทรศัพท์ Zone A-F, ลิฟต์ 12 ตัว, Cooling Tower นอกเวลา และอัตราค่าจอดรถ">
+          <div class="page-running-header">
+            <div class="running-brand"><span class="running-brand-dot"></span> LUMPINI TOWER • REGULATIONS, HVAC &amp; PARKING</div>
+            <div class="running-section" contenteditable="true">หมวดที่ 08, 10–18 : ระเบียบการใช้อาคารและอัตราค่าธรรมเนียม</div>
+          </div>
+
+          <div class="page-body">
+            <div class="section-header">
+              <div class="section-kicker" contenteditable="true">SECTION 08 &amp; 10–18 — BUILDING SERVICES, ELEVATORS, HVAC &amp; PARKING</div>
+              <h2 class="section-title" contenteditable="true">บัตรผ่านเข้า-ออก โทรศัพท์ ลิฟต์โดยสาร ระบบปรับอากาศ และระเบียบที่จอดรถ</h2>
+            </div>
+
+            <div class="two-col-cards">
+              <div class="info-panel">
+                <h3 class="sub-heading" contenteditable="true">8. บัตรผ่านเข้า-ออก (Access Card &amp; Visitor)</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li><strong>สิทธิบัตรพนักงานของผู้เช่า:</strong> พื้นที่เช่า <strong>10 ตร.ม. / 1 ใบ</strong> (ทำบัตรเพิ่มใบละ <strong>50 บาท</strong> ไม่มีค่ามัดจำ)</li>
+                  <li><strong>คืนบัตรเมื่อสิ้นสุดสัญญา:</strong> หากไม่สมบูรณ์/สูญหาย/เสียหาย ปรับใบละ <strong>200 บาท</strong> (ตารางสรุปค่าธรรมเนียมระบุบัตรลิฟต์ชำรุดคืนบัตรเดิมทำใหม่ 50 บาท / บัตรหายทำใหม่ 100 บาท)</li>
+                  <li><strong>บัตรผู้มาติดต่อ (Visitor):</strong> แลกบัตรประชาชนที่จุดประชาสัมพันธ์ ระบุชั้นที่จะไปติดต่อ บัตรสูญหาย/เสียหายปรับ <strong>200 บาท</strong> | ไม่คืนบัตรปรับ <strong>100 บาท/วัน</strong></li>
+                </ul>
+              </div>
+
+              <div class="info-panel">
+                <h3 class="sub-heading" contenteditable="true">10. ห้องจดหมาย &amp; 11. คู่สายโทรศัพท์ (Zone A–F)</h3>
+                <p style="margin:0 0 6px 0;" contenteditable="true"><strong>Mail Room ชั้น 1:</strong> จดหมายทั่วไปใส่ตู้ผู้เช่าชั้น 1 ส่วนจดหมายลงทะเบียน/พัสดุด่วนจัดส่งถึงบริษัท</p>
+                <div class="table-wrapper" style="margin-bottom:0;">
+                  <table class="report-table" style="font-size:12px;">
+                    <thead>
+                      <tr>
+                        <th>ประเภทคู่สาย</th>
+                        <th>Zone A</th>
+                        <th>Zone B</th>
+                        <th>Zone C</th>
+                        <th>Zone D</th>
+                        <th>Zone E</th>
+                        <th>Zone F</th>
+                      </tr>
+                    </thead>
+                    <tbody contenteditable="true">
+                      <tr>
+                        <td><strong>ทั้งหมด</strong></td>
+                        <td>20</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                      </tr>
+                      <tr>
+                        <td><strong>ตามสิทธิ์</strong></td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>2</td>
+                      </tr>
+                      <tr>
+                        <td><strong>เกินสิทธิ์</strong></td>
+                        <td>104</td>
+                        <td>53</td>
+                        <td>42</td>
+                        <td>8</td>
+                        <td>4</td>
+                        <td>8</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="two-col-cards">
+              <div class="info-panel tinted">
+                <h3 class="sub-heading" contenteditable="true">12. ลิฟต์โดยสาร (12 ตัว) และลิฟต์ขนของ</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li><strong>Low Zone (6 ตัว × 1,600 kg.):</strong> ความเร็ว 180 ม./นาที จอดชั้น 1, 2, 4, 6, 8, 10, 11–26</li>
+                  <li><strong>High Zone (6 ตัว × 1,600 kg.):</strong> ความเร็ว 240 ม./นาที จอดชั้น 1, 3, 5, 7, 9, 11, 26–37</li>
+                  <li><strong>เวลาเปิดลิฟต์ขนของ (3 ช่วง):</strong> 09.30–11.30 น., 13.30–16.00 น. และ 16.30–18.00 น. (นอกเวลา <strong>500 บาท/วัน</strong>)</li>
+                  <li><strong>น้ำหนักบรรทุก:</strong> ไม่เกิน <strong>500 กก./เที่ยว</strong> ต้องแสดงใบอนุญาตต่อ รปภ. หน้าลิฟต์ทุกครั้ง</li>
+                </ul>
+              </div>
+
+              <div class="info-panel">
+                <h3 class="sub-heading" contenteditable="true">13. ระบบปรับอากาศ (ท่อน้ำหล่อเย็นส่วนกลาง)</h3>
+                <ul class="clean-list" contenteditable="true">
+                  <li><strong>เวลาบริการปกติ (ฟรี):</strong> จันทร์–ศุกร์ <strong>07.00–18.00 น.</strong> | เสาร์ <strong>07.00–12.00 น.</strong> (ยกเว้นอาทิตย์และวันหยุดนักขัตฤกษ์)</li>
+                  <li><strong>อัตราเปิด Cooling Tower นอกเวลา:</strong> <strong>250 บาท / 1 ชม. / 1 AHU</strong> (ยื่นแบบฟอร์มล่วงหน้าอย่างน้อย 1 วันทำการ ภายใน 16.00 น. งดรับแจ้งทางโทรศัพท์)</li>
+                  <li><strong>จำนวนเครื่องทำความเย็น:</strong> Unit A = <strong>2 AHU</strong> | Unit B, C, D, E, F = ยูนิตละ <strong>1 AHU</strong> (รวมยอดทุกวันที่ 20 ของเดือน สั่งจ่าย “นิติบุคคลอาคารชุดลุมพินีทาวเวอร์”)</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="sub-heading" contenteditable="true">14–18. อัตราค่าบริการที่จอดรถ การประทับตรา และค่าธรรมเนียมบัตรจอดรถ</h3>
+            <div class="table-wrapper">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>หมวดรายการ</th>
+                    <th>รายละเอียดและเงื่อนไขการให้บริการ</th>
+                    <th>อัตราค่าบริการ / ค่าธรรมเนียม</th>
+                  </tr>
+                </thead>
+                <tbody contenteditable="true">
+                  <tr>
+                    <td><strong>14. ยกเลิก/ชำรุด/สูญหาย บัตรจอดรถ (TAG Card) &amp; สติ๊กเกอร์สุญญากาศ</strong></td>
+                    <td>แจ้งยกเลิกล่วงหน้าเป็นลายลักษณ์อักษรอย่างน้อย <strong>30 วัน</strong> (น้อยกว่า 30 วันคิดเต็มเดือน) กรณีสูญหายต้องแนบใบแจ้งความจากสถานีตำรวจ</td>
+                    <td>สูญหายทำใหม่: <strong>500 บาท</strong> (รวม VAT)<br>บัตรชำรุด (คืนซาก): <strong>200 บาท</strong><br>สติ๊กเกอร์สุญญากาศ: <strong>500 บาท/ใบ</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>15. รถจักรยานยนต์</strong></td>
+                    <td>บัตรจอดรายเดือนตามสิทธิ์ / รายชั่วโมง (ประทับตรา 1 ตรา ไม่เกิน 12 ชม. หรือไม่เกิน 22.00 น.)</td>
+                    <td>รายเดือน: <strong>150 บาท/คัน</strong><br>ประทับตรา: <strong>5 บาท</strong> | ไม่ประทับตรา: <strong>50 บาท/ชม.</strong> (บัตรหายปรับ 500 บาท)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>16. รถยนต์รายเดือน</strong></td>
+                    <td>บริการที่จอดรถยนต์รายเดือนสำหรับผู้เช่าตามสิทธิ์ และเช่าชั่วคราว</td>
+                    <td>ตามสิทธิ์: <strong>1,045 บาท/คัน</strong><br>เช่าชั่วคราว: <strong>1,100 บาท/คัน</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>17. การประทับตราจอดรถยนต์</strong></td>
+                    <td>เศษของชั่วโมงคิดเป็น 1 ชั่วโมง (ประทับ 2 ตรา จอดฟรี 1 ชม.แรก ชม.ต่อไปบริษัทผู้ประทับตราจ่าย)</td>
+                    <td>ประทับ 1 ตรา: ฟรี 1 ชม. ชม.ต่อไป <strong>20 บาท</strong><br>ไม่มีตราประทับ: <strong>40 บาท/ชม.</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="page-media-grid"></div>
+          </div>
+
+          <div class="page-editor-controls">
+            <span style="font-size:12px; color:var(--muted);">เครื่องมือประจำหน้า:</span>
+            <div style="display:flex; gap:6px;">
+              <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
+              <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+            </div>
+          </div>
+
+          <div class="page-running-footer">
+            <span contenteditable="true">นิติบุคคลอาคารชุดลุมพินีทาวเวอร์ • ระเบียบการใช้อาคารและอัตราค่าบริการ</span>
+            <span class="footer-page-num">หน้า 6</span>
+          </div>
+        </article>
+
+        <!-- ================= PAGE 7: BUILDING ENGINEERING & MACHINERY SUMMARY ================= -->
+        <article class="report-page" data-page-title="ตารางสรุปเครื่องจักรวิศวกรรมอาคาร (หมวด 19)" data-page-desc="บัญชีเครื่องจักรปรับอากาศ 27 รายการ หม้อแปลง/Solar Cell ระบบดับเพลิง ลิฟต์ และระบบปั๊มน้ำ">
+          <div class="page-running-header">
+            <div class="running-brand"><span class="running-brand-dot"></span> LUMPINI TOWER • ENGINEERING &amp; MACHINERY</div>
+            <div class="running-section" contenteditable="true">หมวดที่ 19 : ตารางสรุปเครื่องจักรภายในอาคาร (ครบ 5 ระบบ)</div>
+          </div>
+
+          <div class="page-body">
+            <div class="section-header">
+              <div class="section-kicker" contenteditable="true">SECTION 19 — BUILDING ENGINEERING &amp; MACHINERY INVENTORY</div>
+              <h2 class="section-title" contenteditable="true">ตารางสรุปเครื่องจักรและระบบวิศวกรรมภายในอาคารลุมพินีทาวเวอร์</h2>
+            </div>
+
+            <!-- Interactive Filter Tabs for the 5 Engineering Systems -->
+            <div class="eng-filter-tabs" role="tablist">
+              <button type="button" class="eng-tab-btn active" onclick="filterEngineeringSection('all', this)">แสดงทั้งหมด (5 ระบบ)</button>
+              <button type="button" class="eng-tab-btn" onclick="filterEngineeringSection('hvac', this)">19.1 ระบบปรับอากาศ (27 รายการ)</button>
+              <button type="button" class="eng-tab-btn" onclick="filterEngineeringSection('elec', this)">19.2 ไฟฟ้า &amp; Solar Cell (Phase 1–3)</button>
+              <button type="button" class="eng-tab-btn" onclick="filterEngineeringSection('fire', this)">19.3 ระบบดับเพลิง (8 รายการ)</button>
+              <button type="button" class="eng-tab-btn" onclick="filterEngineeringSection('lift', this)">19.4 ระบบลิฟต์ (12 ตัว)</button>
+              <button type="button" class="eng-tab-btn" onclick="filterEngineeringSection('pump', this)">19.5 ระบบปั๊มน้ำ (8 รายการ)</button>
+            </div>
+
+            <!-- 19.1 HVAC -->
+            <div class="eng-system-block" data-eng="hvac">
+              <h3 class="sub-heading" contenteditable="true">19.1 ระบบเครื่องปรับอากาศ (Cooling Tower, Pump, Fan, VSD, AHU &amp; Air Conditioner)</h3>
+              <div class="table-wrapper">
+                <table class="report-table" style="font-size:12.5px;">
+                  <thead>
+                    <tr>
+                      <th style="width:48px;">ลำดับ</th>
+                      <th>ระบบ / อุปกรณ์</th>
+                      <th>สถานที่ติดตั้ง</th>
+                      <th>ขนาด</th>
+                      <th>จำนวน</th>
+                      <th>รายละเอียด / ยี่ห้อและรุ่น</th>
+                    </tr>
+                  </thead>
+                  <tbody contenteditable="true">
+                    <tr><td class="num-col">1</td><td>Cooling Tower (CT.1-5)</td><td>CT.1-5 ดาดฟ้า ชั้น 38</td><td>700 Ton</td><td>6 ชุด</td><td>Liang Chi, Flow Rate 2,109 GPM (7,983 LPM)</td></tr>
+                    <tr><td class="num-col">2</td><td>Cooling Tower (CT.6)</td><td>CT.6 ลานจอดรถยนต์ ชั้น 9</td><td>255 Ton</td><td>1 ชุด</td><td>CSP, Flow Rate 792 GPM (2,990 LPM)</td></tr>
+                    <tr><td class="num-col">3</td><td>Condenser Pump (CDP.1-6)</td><td>CDP.1-6 ห้องเครื่อง ชั้น 38</td><td>45 kW</td><td>6 ชุด</td><td>GRUNDFOS, Flow Rate 600 GPM (2,271 LPM)</td></tr>
+                    <tr><td class="num-col">4</td><td>Condenser Pump (CDP.7-8)</td><td>CDP.7-8 ห้องเครื่อง ชั้น 9</td><td>15 kW</td><td>2 ชุด</td><td>PACO, Flow Rate 600 GPM (2,271 LPM)</td></tr>
+                    <tr><td class="num-col">5</td><td>Pressurized Fan (PF.1)</td><td>บันไดหนีไฟ ST-8 ชั้น 38</td><td>5.5 kW</td><td>1 ชุด</td><td>National รุ่น FY-27 FCS-B</td></tr>
+                    <tr><td class="num-col">6</td><td>Pressurized Fan (PF.1)</td><td>บันไดหนีไฟ ST-8 ชั้น M</td><td>5.5 kW</td><td>1 ชุด</td><td>National รุ่น FY-27 FCS-B</td></tr>
+                    <tr><td class="num-col">7</td><td>Pressurized Fan (PF.1)</td><td>บันไดหนีไฟ ST-7 ชั้น 10</td><td>7.5 kW</td><td>1 ชุด</td><td>KRUGER รุ่น BSB 900 TM CCW270</td></tr>
+                    <tr><td class="num-col">8</td><td>Variable Speed Driver (VSD CT.1-5)</td><td>VSD CT.1-5 ห้องเครื่อง ชั้น 38</td><td>15 kW / 20 HP</td><td>6 ชุด</td><td>ABB รุ่น ACH580-01-033A-4+B056</td></tr>
+                    <tr><td class="num-col">9</td><td>Variable Speed Driver (VSD CT.6)</td><td>VSD CT.6 ห้องเครื่อง ชั้น 9</td><td>7.5 kW / 10 HP</td><td>1 ชุด</td><td>ABB รุ่น ACH580-01-018A-4+B056</td></tr>
+                    <tr><td class="num-col">10</td><td>Variable Speed Driver (VSD CDP.1-6)</td><td>VSD CDP.1-6 ห้องเครื่อง ชั้น 38</td><td>55 kW / 75 HP</td><td>6 ชุด</td><td>ABB รุ่น ACS580-01-106A-4+B056</td></tr>
+                    <tr><td class="num-col">11</td><td>Variable Speed Driver (VSD PF.1)</td><td>บันไดหนีไฟ ST-8 ชั้น 38</td><td>5.5 kW / 7.5 HP</td><td>1 ชุด</td><td>ABB รุ่น ACH580-01-12A7-4+B056</td></tr>
+                    <tr><td class="num-col">12</td><td>Variable Speed Driver (VSD PF.2)</td><td>บันไดหนีไฟ ST-8 ชั้น M</td><td>5.5 kW / 7.5 HP</td><td>1 ชุด</td><td>ABB รุ่น ACH580-01-12A7-4+B056</td></tr>
+                    <tr><td class="num-col">13</td><td>Variable Speed Driver (VSD PF.3)</td><td>บันไดหนีไฟ ST-7 ชั้น 10</td><td>7.5 kW / 10 HP</td><td>1 ชุด</td><td>ABB รุ่น ACH580-01-018A-4+B056</td></tr>
+                    <tr><td class="num-col">14</td><td>Air Handling Unit</td><td>ห้อง AHU ชั้น M</td><td>450,600 BTU</td><td>1 ชุด</td><td>Carrier รุ่น 50BF040</td></tr>
+                    <tr><td class="num-col">15</td><td>Air Conditioner (Air Cool)</td><td>ห้องเครื่องลิฟต์ ชั้น 38</td><td>100,000 BTU</td><td>3 ชุด</td><td>Carrier รุ่น 40LAU010X-10RO</td></tr>
+                    <tr><td class="num-col">16</td><td>Air Conditioner (Air Cool)</td><td>ห้องเครื่องลิฟต์ ชั้น 28</td><td>36,167 BTU</td><td>2 ชุด</td><td>Carrier รุ่น 40LB004G</td></tr>
+                    <tr><td class="num-col">17</td><td>Air Conditioner (Water Cool)</td><td>ห้องเครื่องลิฟต์ ชั้น 28</td><td>60,000 BTU</td><td>3 ชุด</td><td>Carrier รุ่น 40LB006</td></tr>
+                    <tr><td class="num-col">18</td><td>Air Conditioner (Water Cool)</td><td>โถงลิฟต์ ชั้น 2,3,19,20,22,23,26H,28-33,36</td><td>36,000 BTU</td><td>29 ชุด</td><td>Carrier รุ่น 07TEU36S101</td></tr>
+                    <tr><td class="num-col">19</td><td>Air Conditioner (Air Cool)</td><td>ห้องหม้อแปลง ชั้น 11</td><td>51,500 BTU</td><td>4 ชุด</td><td>Carrier รุ่น 42TBU0481BP</td></tr>
+                    <tr><td class="num-col">20</td><td>Air Conditioner (Air Cool)</td><td>ห้องหม้อแปลง ชั้น M</td><td>32,800 BTU</td><td>2 ชุด</td><td>Carrier รุ่น 42VLJ012X/38RLJ036R300</td></tr>
+                    <tr><td class="num-col">21</td><td>Air Conditioner (Air Cool)</td><td>โถงลิฟต์ ชั้น 11</td><td>36,000 BTU</td><td>2 ชุด</td><td>Carrier รุ่น 07TEU036S101</td></tr>
+                    <tr><td class="num-col">22</td><td>Air Conditioner (Air Cool)</td><td>ห้องนิติฯ ชั้น G</td><td>40,200 BTU</td><td>1 ชุด</td><td>Carrier รุ่น 40TSF0401UP, 38TSF0401A1</td></tr>
+                    <tr><td class="num-col">23</td><td>Air Conditioner (Air Cool)</td><td>ห้อง CCTV ชั้น M</td><td>24,200 BTU</td><td>1 ชุด</td><td>Carrier รุ่น 42TSF0242CP, 38TSF0242A1</td></tr>
+                    <tr><td class="num-col">24</td><td>Air Conditioner (Air Cool)</td><td>ห้องประชุม ชั้น G</td><td>40,200 BTU</td><td>1 ชุด</td><td>Carrier รุ่น 40TSF0401UP, 38TSF0401A1</td></tr>
+                    <tr><td class="num-col">25</td><td>Air Conditioner (Air Cool)</td><td>ห้อง CONTROL ชั้น G</td><td>40,200 BTU</td><td>1 ชุด</td><td>Carrier รุ่น 40TSF0401UP, 38TSF0401A1</td></tr>
+                    <tr><td class="num-col">26</td><td>Air Conditioner (Air Cool)</td><td>ห้องนอนช่าง ชั้น G</td><td>12,624 BTU</td><td>1 ชุด</td><td>Mitsubishi รุ่น MU-GL13VF, MS-GL13VF</td></tr>
+                    <tr><td class="num-col">27</td><td>Air Conditioner (Air Cool) (VRV)</td><td>โถงลิฟต์ ชั้น 12-18,21,24,25,26L,27,34,35,37</td><td>154,000 / 114,000 BTU</td><td>7 ชุด</td><td>Daikin รุ่น RXQ16AY1S, RXQ12AY1S</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 19.2 Electrical & Solar Cell -->
+            <div class="eng-system-block" data-eng="elec">
+              <h3 class="sub-heading" contenteditable="true">19.2 ระบบหม้อแปลงไฟฟ้า เครื่องกำเนิดไฟฟ้าสำรอง และพลังงานแสงอาทิตย์ (Solar Cell Phase 1–3)</h3>
+              <div class="table-wrapper">
+                <table class="report-table" style="font-size:12.5px;">
+                  <thead>
+                    <tr>
+                      <th style="width:48px;">ลำดับ</th>
+                      <th>ระบบ / อุปกรณ์</th>
+                      <th>สถานที่ติดตั้ง</th>
+                      <th>ขนาด</th>
+                      <th>จำนวน</th>
+                      <th>รายละเอียด / ยี่ห้อและรุ่น</th>
+                    </tr>
+                  </thead>
+                  <tbody contenteditable="true">
+                    <tr><td class="num-col">1</td><td>Transformer (ส่วนกลาง) (TR.1)</td><td>ห้องหม้อแปลง, MDB ชั้น M</td><td>1,600 kVA (24 kVA, 416/240V)</td><td>1 ชุด</td><td>CHAROENCHAI TRANSFORMER (INDOOR DRY TYPE)</td></tr>
+                    <tr><td class="num-col">2</td><td>Transformer (ส่วนลูกค้า) (TR.2-5)</td><td>ห้องหม้อแปลง, MDB ชั้น 11</td><td>2,000 kVA (24 kVA, 416/240V)</td><td>4 ชุด</td><td>CHAROENCHAI TRANSFORMER (INDOOR DRY TYPE)</td></tr>
+                    <tr><td class="num-col">3</td><td>Generator (GEN.1) เครื่องกำเนิดไฟฟ้าสำรอง</td><td>ห้องเครื่องกำเนิดไฟฟ้า ชั้น 1</td><td>770 kVA</td><td>1 ชุด</td><td>เครื่องยนต์ CUMMINS / กำเนิดไฟฟ้า KOHLER / ถังน้ำมัน 1,250 ลิตร</td></tr>
+                    <tr><td class="num-col">4.1</td><td>Solar Cell Phase 1 (Inverter)</td><td>ห้องประชุม ชั้น G</td><td>25 kW</td><td>2 ชุด</td><td>Inverter ยี่ห้อ SUNNY รุ่น STP 25000TL-30</td></tr>
+                    <tr><td class="num-col">4.2</td><td>Solar Cell Phase 1 (แผงโซล่าเซลล์)</td><td>ลาน ชั้นดาดฟ้า</td><td>400 kW</td><td>150 แผง</td><td>VINA SOLAR รุ่น VNS-156M7-5-400W-1.5</td></tr>
+                    <tr><td class="num-col">5.1</td><td>Solar Cell Phase 2 (Inverter)</td><td>ห้องเครื่องลิฟต์ ชั้น 38</td><td>25 kW</td><td>2 ชุด</td><td>Inverter ยี่ห้อ SUNNY รุ่น STP 25-5</td></tr>
+                    <tr><td class="num-col">5.2</td><td>Solar Cell Phase 2 (แผงโซล่าเซลล์)</td><td>หลังคาแทงค์เก็บน้ำ ชั้นดาดฟ้า</td><td>610 W</td><td>94 แผง</td><td>SOLAR PPM รุ่น SPPM-NM10-DG-610W</td></tr>
+                    <tr><td class="num-col">6.1</td><td>Solar Cell Phase 3 (Inverter)</td><td>ห้องนอนช่าง ชั้น G</td><td>36 kW</td><td>1 ชุด</td><td>Inverter ยี่ห้อ HUAWEI รุ่น SUN2000-36KTL-M3</td></tr>
+                    <tr><td class="num-col">6.2</td><td>Solar Cell Phase 3 (แผงโซล่าเซลล์)</td><td>หลังคาคุม CDU ชั้นดาดฟ้า</td><td>630 W</td><td>72 แผง</td><td>JA SOLAR รุ่น JAN72D42-630/LB</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 19.3 Fire Protection -->
+            <div class="eng-system-block" data-eng="fire">
+              <h3 class="sub-heading" contenteditable="true">19.3 ระบบแจ้งเหตุเพลิงไหม้และปั๊มน้ำดับเพลิง (Fire Alarm &amp; Fire Pump System)</h3>
+              <div class="table-wrapper">
+                <table class="report-table" style="font-size:12.5px;">
+                  <thead>
+                    <tr>
+                      <th style="width:48px;">ลำดับ</th>
+                      <th>ระบบ / อุปกรณ์</th>
+                      <th>สถานที่ติดตั้ง</th>
+                      <th>ขนาด</th>
+                      <th>จำนวน</th>
+                      <th>รายละเอียด / ยี่ห้อและรุ่น</th>
+                    </tr>
+                  </thead>
+                  <tbody contenteditable="true">
+                    <tr><td class="num-col">1</td><td>Fire Alarm Control (FAC no.1)</td><td>ห้องคอนโทรล ชั้น M</td><td>10 Loop</td><td>1 ชุด</td><td>Notifier รุ่น NFS2-3030</td></tr>
+                    <tr><td class="num-col">2</td><td>Fire Alarm Control (FAC no.2)</td><td>ห้องชาร์ปไฟฟ้า ชั้น 29</td><td>5 Loop</td><td>1 ชุด</td><td>Notifier รุ่น NFS2-3030</td></tr>
+                    <tr><td class="num-col">3</td><td>Electric Fire Pump (EFP no.1)</td><td>ห้องปั๊มน้ำดับเพลิง ชั้น 9</td><td>150 kW (จ่ายน้ำชั้น 10-38)</td><td>1 ชุด</td><td>Flow rate 1,250 GPM, Head 120 m.</td></tr>
+                    <tr><td class="num-col">4</td><td>Engine Fire Pump (EFP no.1)</td><td>ห้องปั๊มน้ำดับเพลิง ชั้นใต้ดิน</td><td>185 HP (จ่ายน้ำชั้น B-9)</td><td>1 ชุด</td><td>JOHN DEERE 6068TF158 2,800 RPM / GRUNDFOS LS125-100-3-5F (1,000 GPM, Head 90 m.)</td></tr>
+                    <tr><td class="num-col">5</td><td>Engine Fire Pump (EFP no.2)</td><td>ห้องปั๊มน้ำดับเพลิง ชั้น 9</td><td>260 HP (จ่ายน้ำชั้น 10-38)</td><td>1 ชุด</td><td>CUMMINS DCEC-6CTA8.3-C260 1,800 RPM / GRUNDFOS LS150-125-415Ax2 (1,000 GPM, Head 145 m.)</td></tr>
+                    <tr><td class="num-col">6</td><td>Jockey Pump (JP no.1)</td><td>ห้องปั๊มน้ำดับเพลิง ชั้นใต้ดิน</td><td>3 kW, 2,902 rpm</td><td>1 ชุด</td><td>GRUNDFOS รุ่น CR 16-80</td></tr>
+                    <tr><td class="num-col">7</td><td>Jockey Pump (JP no.2)</td><td>ห้องปั๊มน้ำดับเพลิง ชั้น 9</td><td>4 kW, 2,920 rpm</td><td>1 ชุด</td><td>GRUNDFOS รุ่น CR 30-130/12</td></tr>
+                    <tr><td class="num-col">8</td><td>ระบบดับเพลิงอัตโนมัติ</td><td>ห้องหม้อแปลง, MDB ชั้น M</td><td>NOVEC-1230</td><td>1 ชุด</td><td>KIDDE รุ่น RP2002E</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 19.4 Elevator System -->
+            <div class="eng-system-block" data-eng="lift">
+              <h3 class="sub-heading" contenteditable="true">19.4 ระบบลิฟต์โดยสาร (Low Zone &amp; High Zone Elevators)</h3>
+              <div class="table-wrapper">
+                <table class="report-table" style="font-size:12.5px;">
+                  <thead>
+                    <tr>
+                      <th style="width:48px;">ลำดับ</th>
+                      <th>ระบบ / อุปกรณ์</th>
+                      <th>สถานที่ติดตั้ง</th>
+                      <th>ขนาด</th>
+                      <th>จำนวน</th>
+                      <th>รายละเอียด / ยี่ห้อและรุ่น</th>
+                    </tr>
+                  </thead>
+                  <tbody contenteditable="true">
+                    <tr><td class="num-col">1</td><td>ELEVATOR (LIFT no. A–F) LOW ZONE (ลิฟต์โซนต่ำ)</td><td>ห้องเครื่องลิฟต์ ชั้น 28</td><td>1,600 kg.</td><td>6 ตัว</td><td>SCHINDLER PMR 340 ความเร็ว 180 เมตร/นาที</td></tr>
+                    <tr><td class="num-col">2</td><td>HIGH ZONE ELEVATOR (ลิฟต์โซนสูง)</td><td>ห้องเครื่องลิฟต์ ชั้น 38</td><td>1,600 kg.</td><td>6 ตัว</td><td>SCHINDLER PMR 355 ความเร็ว 240 เมตร/นาที</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 19.5 Water & Sewage Pumps -->
+            <div class="eng-system-block" data-eng="pump">
+              <h3 class="sub-heading" contenteditable="true">19.5 ระบบปั๊มน้ำดี ปั๊มเสริมแรงดัน และปั๊มบำบัดน้ำเสีย/ระบายน้ำ</h3>
+              <div class="table-wrapper">
+                <table class="report-table" style="font-size:12.5px;">
+                  <thead>
+                    <tr>
+                      <th style="width:48px;">ลำดับ</th>
+                      <th>ระบบ / อุปกรณ์</th>
+                      <th>สถานที่ติดตั้ง</th>
+                      <th>ขนาด</th>
+                      <th>จำนวน</th>
+                      <th>รายละเอียด / ยี่ห้อและรุ่น</th>
+                    </tr>
+                  </thead>
+                  <tbody contenteditable="true">
+                    <tr><td class="num-col">1</td><td>Cold Water Pump (CWP.1, 2)</td><td>ห้องเครื่อง ชั้นใต้ดิน</td><td>22 kW</td><td>2 ตัว</td><td>มอเตอร์ VEM รุ่น VDE0530 / ปั๊ม SPP รุ่น 100-38</td></tr>
+                    <tr><td class="num-col">2</td><td>Cold Water Pump (CWP.3, 4)</td><td>ห้องเครื่อง ชั้นใต้ดิน</td><td>90 kW</td><td>2 ตัว</td><td>มอเตอร์ VEM รุ่น VDE0530 / ปั๊ม SPP รุ่น BT04</td></tr>
+                    <tr><td class="num-col">3</td><td>Booster Pump (BP.1, 2)</td><td>ห้องเครื่อง ชั้น 38</td><td>5.5 kW</td><td>2 ตัว</td><td>มอเตอร์ VEM รุ่น VDE0530 / ปั๊ม SPP</td></tr>
+                    <tr><td class="num-col">4</td><td>Booster Pump (BP.3, 4)</td><td>ห้องเครื่อง ชั้น 38</td><td>7.5 kW</td><td>2 ตัว</td><td>มอเตอร์ STAC รุ่น NF2 50-16/1000 / ปั๊ม STAC รุ่น 50-16</td></tr>
+                    <tr><td class="num-col">5</td><td>Sewage Pump (SW.3, 4, 5, 6)</td><td>ห้องเครื่อง ชั้นใต้ดิน</td><td>2.2 kW</td><td>1 ชุด</td><td>Tsurumi รุ่น TOS 22 BE 3 F</td></tr>
+                    <tr><td class="num-col">6</td><td>Sewage Pump (SW.7, 8)</td><td>ห้องเครื่อง ชั้นใต้ดิน</td><td>2.2 kW</td><td>1 ชุด</td><td>Tsurumi รุ่น 15 BE 2</td></tr>
+                    <tr><td class="num-col">7</td><td>Sewage Pump (SW.9)</td><td>ลานจอดรถมอเตอร์ไซค์ ชั้น G</td><td>0.7–1.5 kW</td><td>1 ชุด</td><td>Gorman-Rupp รุ่น 11 1/2A20-B</td></tr>
+                    <tr><td class="num-col">8</td><td>Drainage Pump (DP.1, 2, 3, 4)</td><td>ลานจอดรถมอเตอร์ไซค์ ชั้น G</td><td>1.5 kW</td><td>1 ชุด</td><td>Tsurumi รุ่น 15 BE 2</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="page-media-grid"></div>
+          </div>
+
+          <div class="page-editor-controls">
+            <span style="font-size:12px; color:var(--muted);">เครื่องมือประจำหน้า:</span>
+            <div style="display:flex; gap:6px;">
+              <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
+              <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพเครื่องจักร / แผนผังชั้น</button>
+            </div>
+          </div>
+
+          <div class="page-running-footer">
+            <span contenteditable="true">นิติบุคคลอาคารชุดลุมพินีทาวเวอร์ • ข้อมูลวิศวกรรมและเครื่องจักรภายในอาคาร</span>
+            <span class="footer-page-num">หน้า 7</span>
+          </div>
+        </article>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    let currentPageIndex = 0;
+    let currentViewMode = 'single'; // 'single' | 'spread' | 'all'
+    let currentAppMode = 'edit';    // 'edit' | 'read'
+
+    const THEME_PRESETS = {
+      navy: {
+        brand: '#0f2942',
+        brandLight: '#1e4976',
+        brandSoft: '#eef4fa',
+        accent: '#c59b27',
+        accentSoft: '#fdf8eb'
+      },
+      emerald: {
+        brand: '#0f4c3a',
+        brandLight: '#176b52',
+        brandSoft: '#ecfdf5',
+        accent: '#10b981',
+        accentSoft: '#f0fdf4'
+      },
+      slate: {
+        brand: '#1e293b',
+        brandLight: '#334155',
+        brandSoft: '#f1f5f9',
+        accent: '#0284c7',
+        accentSoft: '#f0f9ff'
+      },
+      bronze: {
+        brand: '#432818',
+        brandLight: '#6f4518',
+        brandSoft: '#fdf8f5',
+        accent: '#d97706',
+        accentSoft: '#fffbeb'
+      },
+      burgundy: {
+        brand: '#4c1d24',
+        brandLight: '#702935',
+        brandSoft: '#fdf2f4',
+        accent: '#cda434',
+        accentSoft: '#fefce8'
+      }
+    };
+
+    function getPages() {
+      return Array.from(document.querySelectorAll('.report-page'));
+    }
+
+    function updatePageNumbersAndSidebar() {
+      const pages = getPages();
+      const total = pages.length;
+      if (currentPageIndex >= total) {
+        currentPageIndex = Math.max(0, total - 1);
+      }
+
+      const sidebarList = document.getElementById('sidebarPageList');
+      sidebarList.innerHTML = '';
+
+      pages.forEach((page, idx) => {
+        const footerNum = page.querySelector('.footer-page-num');
+        if (footerNum) footerNum.textContent = `หน้า ${idx + 1}`;
+
+        const h2 = page.querySelector('.section-title, .cover-title');
+        const pageTitle = page.getAttribute('data-page-title') || (h2 ? h2.textContent.trim() : `หน้าที่ ${idx + 1}`);
+
+        const navItem = document.createElement('div');
+        navItem.className = 'page-nav-item' + (idx === currentPageIndex ? ' active' : '');
+        navItem.onclick = () => goToPage(idx);
+
+        const leftInfo = document.createElement('div');
+        leftInfo.className = 'page-nav-info';
+
+        const badge = document.createElement('span');
+        badge.className = 'page-num-badge';
+        badge.textContent = idx + 1;
+
+        const titleSpan = document.createElement('span');
+        titleSpan.className = 'page-nav-title';
+        titleSpan.textContent = pageTitle;
+
+        leftInfo.appendChild(badge);
+        leftInfo.appendChild(titleSpan);
+        navItem.appendChild(leftInfo);
+
+        if (currentAppMode === 'edit') {
+          navItem.draggable = true;
+          navItem.dataset.index = idx;
+          navItem.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', idx);
+            navItem.style.opacity = '0.4';
+          });
+          navItem.addEventListener('dragend', (e) => {
+            navItem.style.opacity = '1';
+          });
+          navItem.addEventListener('dragover', (e) => {
+            e.preventDefault();
+          });
+          navItem.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
+            const toIndex = idx;
+            if (!isNaN(fromIndex) && fromIndex !== toIndex) {
+              reorderPages(fromIndex, toIndex);
+            }
+          });
+
+          const actions = document.createElement('div');
+          actions.className = 'page-item-actions';
+
+          if (idx > 0) {
+            const upBtn = document.createElement('button');
+            upBtn.type = 'button';
+            upBtn.className = 'mini-icon-btn';
+            upBtn.title = 'เลื่อนหน้าขึ้น';
+            upBtn.textContent = '↑';
+            upBtn.onclick = (e) => {
+              e.stopPropagation();
+              movePage(idx, -1);
+            };
+            actions.appendChild(upBtn);
+          }
+
+          if (idx < total - 1) {
+            const downBtn = document.createElement('button');
+            downBtn.type = 'button';
+            downBtn.className = 'mini-icon-btn';
+            downBtn.title = 'เลื่อนหน้าลง';
+            downBtn.textContent = '↓';
+            downBtn.onclick = (e) => {
+              e.stopPropagation();
+              movePage(idx, 1);
+            };
+            actions.appendChild(downBtn);
+          }
+
+          const cloneBtn = document.createElement('button');
+          cloneBtn.type = 'button';
+          cloneBtn.className = 'mini-icon-btn';
+          cloneBtn.title = 'คัดลอกหน้านี้เพื่อใช้เป็นเทมเพลต';
+          cloneBtn.textContent = '📋';
+          cloneBtn.onclick = (e) => {
+            e.stopPropagation();
+            duplicatePage(idx);
+          };
+          actions.appendChild(cloneBtn);
+
+          if (total > 1) {
+            const delBtn = document.createElement('button');
+            delBtn.type = 'button';
+            delBtn.className = 'mini-icon-btn';
+            delBtn.title = 'ลบหน้านี้';
+            delBtn.textContent = '✕';
+            delBtn.onclick = (e) => {
+              e.stopPropagation();
+              deletePage(idx);
+            };
+            actions.appendChild(delBtn);
+          }
+
+          navItem.appendChild(actions);
+        }
+
+        sidebarList.appendChild(navItem);
+      });
+
+      document.getElementById('totalPagesBadge').textContent = `${total} หน้า`;
+      renderTableOfContents();
+      renderVisiblePages();
+    }
+
+    function renderTableOfContents() {
+      const tocContainer = document.getElementById('dynamicTocContainer');
+      if (!tocContainer) return;
+
+      const pages = getPages();
+      tocContainer.innerHTML = '';
+
+      pages.forEach((page, idx) => {
+        const h2 = page.querySelector('.section-title, .cover-title');
+        const titleText = page.getAttribute('data-page-title') || (h2 ? h2.textContent.trim() : `หน้าที่ ${idx + 1}`);
+        const descText = page.getAttribute('data-page-desc') || 'คลิกเพื่อเปิดอ่านและแก้ไขรายละเอียดของหน้านี้';
+
+        const entry = document.createElement('div');
+        entry.className = 'toc-entry-card';
+        entry.onclick = () => goToPage(idx);
+
+        entry.innerHTML = `
+          <div class="toc-entry-left">
+            <div class="toc-chapter-num">${String(idx + 1).padStart(2, '0')}</div>
+            <div class="toc-chapter-text">
+              <h4>${titleText}</h4>
+              <p>${descText}</p>
+            </div>
+          </div>
+          <div class="toc-page-pill">หน้า ${idx + 1} ▶</div>
+        `;
+        tocContainer.appendChild(entry);
+      });
+    }
+
+    function renderVisiblePages() {
+      const pages = getPages();
+      const total = pages.length;
+      const viewport = document.getElementById('ebookViewport');
+      const stage = document.getElementById('ebookStage');
+
+      viewport.classList.toggle('spread-view', currentViewMode === 'spread');
+      stage.classList.toggle('ebook-spread-mode', currentViewMode === 'spread');
+
+      pages.forEach((p, idx) => {
+        p.classList.remove('visible-page', 'spread-left', 'spread-right');
+        if (currentViewMode === 'all') {
+          p.classList.add('visible-page');
+        } else if (currentViewMode === 'spread') {
+          const leftIdx = currentPageIndex % 2 === 0 ? currentPageIndex : currentPageIndex - 1;
+          const rightIdx = leftIdx + 1;
+          if (idx === leftIdx) {
+            p.classList.add('visible-page', 'spread-left');
+          } else if (idx === rightIdx) {
+            p.classList.add('visible-page', 'spread-right');
+          }
+        } else {
+          if (idx === currentPageIndex) {
+            p.classList.add('visible-page');
+          }
+        }
+      });
+
+      const currentPage = pages[currentPageIndex];
+      const chapterTitle = currentPage ? (currentPage.getAttribute('data-page-title') || `หน้าที่ ${currentPageIndex + 1}`) : '';
+
+      if (currentViewMode === 'spread') {
+        const leftIdx = currentPageIndex % 2 === 0 ? currentPageIndex : currentPageIndex - 1;
+        const rightIdx = Math.min(total - 1, leftIdx + 1);
+        document.getElementById('currentPageLabel').textContent =
+          leftIdx === rightIdx ? `หน้าที่ ${leftIdx + 1} จาก ${total}` : `หน้าคู่ที่ ${leftIdx + 1}–${rightIdx + 1} จาก ${total}`;
+      } else if (currentViewMode === 'all') {
+        document.getElementById('currentPageLabel').textContent = `แสดงครบทั้ง ${total} หน้า`;
+      } else {
+        document.getElementById('currentPageLabel').textContent = `หน้าที่ ${currentPageIndex + 1} จาก ${total}`;
+      }
+
+      document.getElementById('currentChapterName').textContent = chapterTitle;
+      document.getElementById('btnPrevPage').disabled = (currentViewMode !== 'all' && currentPageIndex === 0);
+      document.getElementById('btnNextPage').disabled = (currentViewMode !== 'all' && currentPageIndex >= total - 1);
+    }
+
+    function goToPage(index) {
+      const pages = getPages();
+      if (index < 0 || index >= pages.length) return;
+      currentPageIndex = index;
+      updatePageNumbersAndSidebar();
+      if (currentViewMode === 'all') {
+        pages[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function navigatePage(step) {
+      const pages = getPages();
+      const delta = currentViewMode === 'spread' ? step * 2 : step;
+      const nextIdx = Math.min(pages.length - 1, Math.max(0, currentPageIndex + delta));
+      goToPage(nextIdx);
+    }
+
+    function movePage(index, direction) {
+      const pages = getPages();
+      const targetIndex = index + direction;
+      if (targetIndex < 0 || targetIndex >= pages.length) return;
+      const viewport = document.getElementById('ebookViewport');
+      const movingPage = pages[index];
+      const referencePage = pages[targetIndex];
+
+      if (direction === -1) {
+        viewport.insertBefore(movingPage, referencePage);
+      } else {
+        viewport.insertBefore(referencePage, movingPage);
+      }
+      currentPageIndex = targetIndex;
+      updatePageNumbersAndSidebar();
+    }
+
+    function reorderPages(fromIndex, toIndex) {
+      const pages = getPages();
+      const viewport = document.getElementById('ebookViewport');
+      const movingPage = pages[fromIndex];
+      const targetPage = pages[toIndex];
+
+      if (fromIndex < toIndex) {
+        viewport.insertBefore(movingPage, targetPage.nextSibling);
+      } else {
+        viewport.insertBefore(movingPage, targetPage);
+      }
+      currentPageIndex = toIndex;
+      updatePageNumbersAndSidebar();
+    }
+
+    function deletePage(index) {
+      const pages = getPages();
+      if (pages.length <= 1) return;
+      pages[index].remove();
+      if (currentPageIndex >= pages.length - 1) {
+        currentPageIndex = Math.max(0, pages.length - 2);
+      }
+      updatePageNumbersAndSidebar();
+    }
+
+    function duplicatePage(index) {
+      const pages = getPages();
+      const pageToClone = pages[index];
+      const clonedPage = pageToClone.cloneNode(true);
+      
+      clonedPage.classList.remove('visible-page', 'spread-left', 'spread-right');
+      
+      const viewport = document.getElementById('ebookViewport');
+      viewport.insertBefore(clonedPage, pageToClone.nextSibling);
+      
+      bindEditableListeners(clonedPage);
+      currentPageIndex = index + 1;
+      updatePageNumbersAndSidebar();
+    }
+
+    function addNewPage() {
+      const templateType = document.getElementById('newPageTemplateSelect').value;
+      const viewport = document.getElementById('ebookViewport');
+      const newIndex = getPages().length + 1;
+
+      const article = document.createElement('article');
+      article.className = 'report-page';
+
+      let bodyContent = '';
+      let defaultTitle = `หัวข้อรายงานเพิ่มเติม (หน้าที่ ${newIndex})`;
+      let defaultDesc = 'รายละเอียดเนื้อหาและข้อมูลเพิ่มเติมที่สร้างขึ้นใหม่ในเล่มรายงาน';
+
+      if (templateType === 'executive') {
+        defaultTitle = `สารจากผู้บริหาร / บทสัมภาษณ์พิเศษ (หน้า ${newIndex})`;
+        defaultDesc = 'วิสัยทัศน์และนโยบายการบริหารจัดการอาคารชุดลุมพินีทาวเวอร์';
+        bodyContent = `
+          <div class="section-header">
+            <div class="section-kicker" contenteditable="true">EXECUTIVE INSIGHT</div>
+            <h2 class="section-title" contenteditable="true">${defaultTitle}</h2>
+          </div>
+          <div class="info-panel tinted" contenteditable="true">
+            <h3 class="sub-heading">วิสัยทัศน์และแนวทางการดำเนินงานประจำปี</h3>
+            <p>คลิกที่พื้นที่นี้เพื่อพิมพ์ข้อความสารจากผู้บริหาร นโยบายด้านการจัดการอาคาร หรือสรุปผลการดำเนินงานประจำปีของอาคารลุมพินีทาวเวอร์</p>
+          </div>
+        `;
+      } else if (templateType === 'gallery') {
+        defaultTitle = `ภาพกิจกรรมและแผนผังอาคาร (หน้า ${newIndex})`;
+        defaultDesc = 'แกลเลอรีภาพถ่ายเครื่องจักรวิศวกรรม แผนผังชั้น และกิจกรรมภายในอาคาร';
+        bodyContent = `
+          <div class="section-header">
+            <div class="section-kicker" contenteditable="true">PHOTO GALLERY &amp; FLOOR PLANS</div>
+            <h2 class="section-title" contenteditable="true">${defaultTitle}</h2>
+          </div>
+          <div class="info-panel tinted" contenteditable="true">
+            คลิกปุ่ม <strong>“🖼️ แทรกรูปภาพในหน้านี้”</strong> ด้านบน หรือปุ่มด้านล่าง เพื่ออัปโหลดภาพถ่ายเครื่องจักร แผนผังชั้นอาคารลุมพินีทาวเวอร์ หรือภาพกิจกรรมพร้อมพิมพ์คำบรรยายใต้ภาพ
+          </div>
+        `;
+      } else if (templateType === 'table') {
+        defaultTitle = `ตารางสรุปข้อมูลประจำปี (หน้า ${newIndex})`;
+        defaultDesc = 'ตารางบันทึกข้อมูลสถิติ รายการบำรุงรักษา หรือสรุปค่าใช้จ่ายประจำปี';
+        bodyContent = `
+          <div class="section-header">
+            <div class="section-kicker" contenteditable="true">DATA SUMMARY TABLE</div>
+            <h2 class="section-title" contenteditable="true">${defaultTitle}</h2>
+          </div>
+          <div class="table-wrapper">
+            <table class="report-table">
+              <thead>
+                <tr contenteditable="true">
+                  <th style="width:60px;">ลำดับ</th>
+                  <th>รายการ / หมวดหมู่</th>
+                  <th>รายละเอียดการดำเนินงาน</th>
+                  <th>หมายเหตุ</th>
+                </tr>
+              </thead>
+              <tbody contenteditable="true">
+                <tr>
+                  <td class="num-col">1</td>
+                  <td>คลิกเพื่อพิมพ์รายการที่ 1</td>
+                  <td>ระบุรายละเอียดข้อมูล</td>
+                  <td>ปกติ</td>
+                </tr>
+                <tr>
+                  <td class="num-col">2</td>
+                  <td>คลิกเพื่อพิมพ์รายการที่ 2</td>
+                  <td>ระบุรายละเอียดข้อมูล</td>
+                  <td>ปกติ</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        `;
+      } else {
+        bodyContent = `
+          <div class="section-header">
+            <div class="section-kicker" contenteditable="true">CUSTOM REPORT SECTION</div>
+            <h2 class="section-title" contenteditable="true">${defaultTitle}</h2>
+          </div>
+          <div class="info-panel" contenteditable="true">
+            <h3 class="sub-heading">หัวข้อย่อยสำหรับเนื้อหาใหม่</h3>
+            <p>คลิกที่ข้อความนี้เพื่อพิมพ์แก้ไขเนื้อหา เพิ่มรายละเอียดโครงการ หรือสรุปผลการดำเนินงานประจำปีของอาคารลุมพินีทาวเวอร์ได้ตามต้องการ</p>
+          </div>
+        `;
+      }
+
+      article.setAttribute('data-page-title', defaultTitle);
+      article.setAttribute('data-page-desc', defaultDesc);
+
+      article.innerHTML = `
+        <div class="page-running-header">
+          <div class="running-brand"><span class="running-brand-dot"></span> LUMPINI TOWER • ANNUAL REPORT</div>
+          <div class="running-section" contenteditable="true">ส่วนขยายรายงานประจำปี</div>
+        </div>
+        <div class="page-body">
+          ${bodyContent}
+          <div class="page-media-grid"></div>
+        </div>
+        <div class="page-editor-controls">
+          <span style="font-size:12px; color:var(--muted);">เครื่องมือประจำหน้า:</span>
+          <div style="display:flex; gap:6px;">
+            <button type="button" class="tool-btn" onclick="appendTextBlock(this)">+ เพิ่มย่อหน้า / กล่องข้อความ</button>
+            <button type="button" class="tool-btn" onclick="triggerImageUpload()">+ แทรกรูปภาพประกอบ</button>
+          </div>
+        </div>
+        <div class="page-running-footer">
+          <span contenteditable="true">นิติบุคคลอาคารชุดลุมพินีทาวเวอร์ • 1168 ถนนพระราม 4 เขตสาทร กทม.</span>
+          <span class="footer-page-num">หน้า ${newIndex}</span>
+        </div>
+      `;
+
+      viewport.appendChild(article);
+      bindEditableListeners(article);
+      goToPage(newIndex - 1);
+    }
+
+    function appendTextBlock(btnEl) {
+      const page = btnEl.closest('.report-page');
+      if (!page) return;
+      const body = page.querySelector('.page-body');
+      const mediaGrid = body.querySelector('.page-media-grid');
+
+      const panel = document.createElement('div');
+      panel.className = 'info-panel';
+      panel.setAttribute('contenteditable', 'true');
+      panel.innerHTML = `
+        <h3 class="sub-heading">หัวข้อย่อยใหม่ (คลิกเพื่อแก้ไข)</h3>
+        <p style="margin:0;">พิมพ์รายละเอียดเนื้อหา ข้อมูลการบริหารอาคาร หรือหมายเหตุเพิ่มเติมที่นี่...</p>
+      `;
+
+      body.insertBefore(panel, mediaGrid);
+      panel.focus();
+    }
+
+    function triggerImageUpload() {
+      document.getElementById('imageUploadInput').click();
+    }
+
+    function handleImageFiles(files) {
+      if (!files || !files.length) return;
+      const pages = getPages();
+      const activePage = pages[currentPageIndex] || pages[0];
+      const mediaGrid = activePage.querySelector('.page-media-grid');
+
+      Array.from(files).forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const fig = document.createElement('figure');
+          fig.className = 'media-figure-card';
+          fig.innerHTML = `
+            <img src="${e.target.result}" alt="${file.name}">
+            <figcaption class="media-caption-bar">
+              <span contenteditable="true" style="flex:1;">คำบรรยายภาพ: ${file.name.replace(/\.[^/.]+$/, '')} (คลิกเพื่อแก้ไข)</span>
+              <div class="img-control-bar">
+                <button type="button" class="mini-icon-btn" title="สลับขนาด ครึ่งหน้า / เต็มหน้า" onclick="toggleImageWidth(this)">⇔</button>
+                <button type="button" class="mini-icon-btn" title="ลบรูปภาพนี้" onclick="this.closest('.media-figure-card').remove()">✕</button>
+              </div>
+            </figcaption>
+          `;
+          mediaGrid.appendChild(fig);
+        };
+        reader.readAsDataURL(file);
+      });
+
+      document.getElementById('imageUploadInput').value = '';
+    }
+
+    function handleExecPortraitFile(files) {
+      if (!files || !files.length) return;
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const avatarBox = document.getElementById('execAvatarBox');
+        if (avatarBox) {
+          avatarBox.innerHTML = `<img src="${e.target.result}" alt="ผู้บริหารอาคารลุมพินีทาวเวอร์">`;
+        }
+      };
+      reader.readAsDataURL(file);
+      document.getElementById('execPortraitInput').value = '';
+    }
+
+    function adjustExecPortraitWidth(widthVal) {
+      const wrapper = document.getElementById('execPortraitWrapper');
+      if (wrapper) {
+        wrapper.style.width = widthVal;
+      }
+    }
+
+    function toggleExecPortraitRadius(radiusVal) {
+      const avatarBox = document.getElementById('execAvatarBox');
+      if (avatarBox) {
+        avatarBox.style.borderRadius = radiusVal;
+      }
+    }
+
+    function handleCoverImageFile(files) {
+      if (!files || !files.length) return;
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const coverSection = document.getElementById('coverHeroSection');
+        if (coverSection) {
+          coverSection.style.backgroundImage = `url('${e.target.result}')`;
+        }
+      };
+      reader.readAsDataURL(file);
+      document.getElementById('coverImageInput').value = '';
+    }
+
+    function handleCoverLogoFile(files) {
+      if (!files || !files.length) return;
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const logoBox = document.getElementById('coverLogoBox');
+        if (logoBox) {
+          logoBox.innerHTML = `<img src="${e.target.result}" alt="Logo" style="width:100%; height:100%; object-fit:contain;">`;
+          logoBox.style.border = 'none';
+          logoBox.style.background = 'transparent';
+        }
+      };
+      reader.readAsDataURL(file);
+      document.getElementById('coverLogoInput').value = '';
+    }
+
+    function adjustCoverLogoSize(sizeVal) {
+      const logoBox = document.getElementById('coverLogoBox');
+      if (logoBox) {
+        logoBox.style.width = sizeVal;
+        logoBox.style.height = sizeVal;
+      }
+    }
+
+    function toggleCoverLogoShape(radiusVal) {
+      const logoBox = document.getElementById('coverLogoBox');
+      if (logoBox) {
+        logoBox.style.borderRadius = radiusVal;
+      }
+    }
+
+    function toggleCoverLogoShadow(shadowVal) {
+      const logoBox = document.getElementById('coverLogoBox');
+      if (logoBox) {
+        logoBox.style.boxShadow = shadowVal;
+      }
+    }
+
+    function toggleCoverLogoBorder(borderVal) {
+      const logoBox = document.getElementById('coverLogoBox');
+      if (logoBox) {
+        logoBox.style.border = borderVal;
+      }
+    }
+
+    function removeCoverImage() {
+      const coverSection = document.getElementById('coverHeroSection');
+      if (coverSection) {
+        coverSection.style.backgroundImage = 'none';
+      }
+    }
+
+    function toggleCoverLayout(btn) {
+      const coverPage = document.querySelector('.report-page[data-page-title="หน้าปก & ข้อมูลภาพรวมโครงการ"]');
+      if (coverPage) {
+        const isFull = coverPage.classList.toggle('full-cover-layout');
+        if (isFull) {
+          btn.textContent = '✨ สลับเป็น "แบนเนอร์ครึ่งหน้า + ข้อมูลหลัก"';
+          btn.style.background = 'rgba(37, 99, 235, 0.3)';
+          btn.style.borderColor = '#2563eb';
+          btn.style.color = '#bfdbfe';
+        } else {
+          btn.textContent = '✨ สลับเป็น "ปกภาพเต็มหน้า A4"';
+          btn.style.background = 'rgba(197, 155, 39, 0.3)';
+          btn.style.borderColor = '#c59b27';
+          btn.style.color = '#ffe69c';
+        }
+      }
+    }
+
+    function applyCoverTemplate(themeKey) {
+      const cover = document.getElementById('coverHeroSection');
+      if (!cover) return;
+
+      const badge = cover.querySelector('.cover-badge');
+      const title = cover.querySelector('.cover-title');
+      const subtitle = cover.querySelector('.cover-subtitle');
+      const addr = cover.querySelector('.cover-address-bar');
+
+      if (themeKey === 'light') {
+        cover.style.background = '#ffffff';
+        cover.style.border = '1px solid var(--border)';
+        cover.style.borderBottom = '5px solid var(--brand)';
+        cover.style.color = 'var(--ink)';
+        if (badge) {
+          badge.style.background = 'var(--brand)';
+          badge.style.color = '#ffffff';
+        }
+        if (subtitle) subtitle.style.color = 'var(--muted)';
+        if (addr) {
+          addr.style.background = 'var(--surface-muted)';
+          addr.style.borderLeft = '3px solid var(--brand)';
+          addr.style.color = 'var(--ink)';
+        }
+      } else if (themeKey === 'dark') {
+        cover.style.background = '#1e293b';
+        cover.style.border = 'none';
+        cover.style.borderBottom = '5px solid #f59e0b';
+        cover.style.color = '#ffffff';
+        if (badge) {
+          badge.style.background = '#f59e0b';
+          badge.style.color = '#0f172a';
+        }
+        if (subtitle) subtitle.style.color = '#94a3b8';
+        if (addr) {
+          addr.style.background = 'rgba(15, 23, 42, 0.4)';
+          addr.style.borderLeft = '3px solid #f59e0b';
+          addr.style.color = '#f8fafc';
+        }
+      } else {
+        // default navy
+        cover.style.background = 'linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%)';
+        cover.style.border = 'none';
+        cover.style.borderBottom = '5px solid var(--accent)';
+        cover.style.color = '#ffffff';
+        if (badge) {
+          badge.style.background = 'var(--accent)';
+          badge.style.color = '#0f172a';
+        }
+        if (subtitle) subtitle.style.color = '#e2e8f0';
+        if (addr) {
+          addr.style.background = 'rgba(15, 23, 42, 0.35)';
+          addr.style.borderLeft = '3px solid var(--accent)';
+          addr.style.color = '#f8fafc';
+        }
+      }
+    }
+
+    function toggleImageWidth(btn) {
+      const card = btn.closest('.media-figure-card');
+      if (card) {
+        card.classList.toggle('full-width');
+      }
+    }
+
+    function setAppMode(mode) {
+      currentAppMode = mode;
+      document.body.classList.toggle('read-mode', mode === 'read');
+      document.getElementById('btnEditMode').classList.toggle('active', mode === 'edit');
+      document.getElementById('btnReadMode').classList.toggle('active', mode === 'read');
+
+      const editables = document.querySelectorAll('.report-page [contenteditable]');
+      editables.forEach((el) => {
+        el.setAttribute('contenteditable', mode === 'edit' ? 'true' : 'false');
+      });
+
+      updatePageNumbersAndSidebar();
+    }
+
+    function formatDoc(command) {
+      document.execCommand(command, false, null);
+    }
+
+    function changeFontFamily(fontVal) {
+      document.documentElement.style.setProperty('--report-font', fontVal);
+      document.documentElement.style.setProperty('--heading-font', fontVal);
+    }
+
+    function changeFontSize(sizeVal) {
+      document.documentElement.style.setProperty('--base-font-size', sizeVal);
+    }
+
+    function changeEbookView(viewVal) {
+      currentViewMode = viewVal;
+      renderVisiblePages();
+    }
+
+    function changeColumnLayout(cols) {
+      document.documentElement.style.setProperty('--content-columns', cols);
+    }
+
+    function changePageOrientation(orient) {
+      if (orient === 'landscape') {
+        document.documentElement.style.setProperty('--page-max-width', '1120px');
+      } else {
+        const size = document.getElementById('pageSizeSelect').value;
+        changePageSize(size);
+      }
+    }
+
+    function changePageSize(sizeVal) {
+      let width = '840px';
+      let height = '1060px';
+      
+      if (sizeVal === 'a5') {
+        width = '600px';
+        height = '840px';
+      } else if (sizeVal === 'a3') {
+        width = '1190px';
+        height = '1680px';
+      } else if (sizeVal === 'b4') {
+        width = '1000px';
+        height = '1410px';
+      }
+
+      document.documentElement.style.setProperty('--page-max-width', width);
+      document.documentElement.style.setProperty('--page-min-height', height);
+    }
+
+    function changePagePadding(padVal) {
+      document.documentElement.style.setProperty('--page-padding', padVal);
+    }
+
+    function applyThemePreset(key, btnEl) {
+      const preset = THEME_PRESETS[key];
+      if (!preset) return;
+
+      document.documentElement.style.setProperty('--brand', preset.brand);
+      document.documentElement.style.setProperty('--brand-light', preset.brandLight);
+      document.documentElement.style.setProperty('--brand-soft', preset.brandSoft);
+      document.documentElement.style.setProperty('--accent', preset.accent);
+      document.documentElement.style.setProperty('--accent-soft', preset.accentSoft);
+
+      document.getElementById('customBrandColor').value = preset.brand;
+      document.getElementById('customAccentColor').value = preset.accent;
+
+      document.querySelectorAll('.swatch-btn').forEach((b) => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+    }
+
+    function applyCustomColors() {
+      const brandHex = document.getElementById('customBrandColor').value;
+      const accentHex = document.getElementById('customAccentColor').value;
+
+      document.documentElement.style.setProperty('--brand', brandHex);
+      document.documentElement.style.setProperty('--brand-light', brandHex);
+      document.documentElement.style.setProperty('--accent', accentHex);
+
+      document.querySelectorAll('.swatch-btn').forEach((b) => b.classList.remove('active'));
+    }
+
+    function filterEngineeringSection(category, btnEl) {
+      document.querySelectorAll('.eng-tab-btn').forEach((b) => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+
+      const blocks = document.querySelectorAll('.eng-system-block');
+      blocks.forEach((blk) => {
+        if (category === 'all' || blk.getAttribute('data-eng') === category) {
+          blk.style.display = 'block';
+        } else {
+          blk.style.display = 'none';
+        }
+      });
+    }
+
+    function bindEditableListeners(rootEl = document) {
+      rootEl.querySelectorAll('.section-title, .cover-title').forEach((heading) => {
+        heading.addEventListener('input', () => {
+          const page = heading.closest('.report-page');
+          if (page) {
+            page.setAttribute('data-page-title', heading.textContent.trim());
+            updatePageNumbersAndSidebar();
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      bindEditableListeners();
+      updatePageNumbersAndSidebar();
+    });
+  </script>
+</body>
+</html>
